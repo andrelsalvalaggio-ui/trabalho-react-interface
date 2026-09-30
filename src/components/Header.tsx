@@ -19,6 +19,7 @@ import {
   CreditCardIcon,
   LogOutIcon,
   SearchIcon,
+  ShoppingCartIcon,
 } from "lucide-react";
 
 export function Header() {
@@ -68,6 +69,11 @@ export function Header() {
               <SearchIcon />
             </InputGroupAddon>
           </InputGroup>
+
+          {/* Carrinho */}
+          <Button variant="ghost" size="icon">
+            <ShoppingCartIcon />
+          </Button>
 
           {/* Avatar */}
           <DropdownMenu>
