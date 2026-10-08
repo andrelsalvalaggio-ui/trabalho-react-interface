@@ -80,17 +80,17 @@ export function HeaderInicio() {
               <DropdownMenuGroup>
                 <DropdownMenuItem>
                   <BadgeCheckIcon />
-                  Account
+                  Conta
                 </DropdownMenuItem>
 
                 <DropdownMenuItem>
                   <CreditCardIcon />
-                  Billing
+                  Dados Financeiros
                 </DropdownMenuItem>
 
                 <DropdownMenuItem>
                   <BellIcon />
-                  Notifications
+                  Notificações
                 </DropdownMenuItem>
               </DropdownMenuGroup>
 
@@ -98,7 +98,7 @@ export function HeaderInicio() {
 
               <DropdownMenuItem>
                 <LogOutIcon />
-                Sign Out
+                Sair
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
