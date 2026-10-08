@@ -53,14 +53,6 @@ export function HeaderInicio() {
         </div>
 
         <div className="flex items-center justify-end gap-2">
-          <Button variant="ghost">Início</Button>
-
-          <Button variant="ghost">Contato</Button>
-
-          <Button variant="ghost">Sobre nós</Button>
-
-          <Button variant="ghost">Criar Conta</Button>
-
           <Button variant="ghost" size="icon">
             <ShoppingCartIcon />
           </Button>
