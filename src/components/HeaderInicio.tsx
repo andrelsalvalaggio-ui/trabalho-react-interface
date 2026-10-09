@@ -30,7 +30,7 @@ export function HeaderInicio() {
           <h1>LifeShop</h1>
 
           <DropdownMenu>
-            <DropdownMenuTrigger render={<Button variant="outline" />}>
+            <DropdownMenuTrigger  className= "bg-primary-foreground" render={<Button variant="outline" />}>
               Categorias
             </DropdownMenuTrigger>
 
