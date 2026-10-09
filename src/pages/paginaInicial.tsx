@@ -8,6 +8,7 @@ import teclado from "../assets/teclado.png";
 import webcam from "../assets/webcam.png";
 import suporte from "../assets/suporte.png";
 import fonegamer from "../assets/fonegamer.png";
+import { ShopCard } from "../components/ShopCard";
 
 function PaginaInicial() {
     const [api, setApi] = useState<CarouselApi>();
@@ -37,7 +38,7 @@ function PaginaInicial() {
                         Baseado nas suas atividades recentes
                     </h2>
 
-                    <div className="relative w-[1220px]">
+                    <div className="relative w-305">
                         <Carousel
                             setApi={setApi}
                             opts={{
@@ -46,141 +47,57 @@ function PaginaInicial() {
                             }}
                         >
                             <CarouselContent className="-ml-6 py-2">
-                                <CarouselItem className="basis-[244px] pl-6">
-                                    <Card className="w-[220px]">
-                                        <CardHeader>
-                                            <CardTitle>Fone Bluetooth</CardTitle>
-                                            <CardDescription>
-                                                Fone sem fio com estojo de carregamento
-                                            </CardDescription>
-                                        </CardHeader>
-
-                                        <CardContent>
-                                            <img
-                                                src={fone}
-                                                alt="Fone Bluetooth"
-                                                className="mx-auto h-56 w-56 object-contain"
-                                            />
-                                        </CardContent>
-
-                                        <CardFooter>
-                                            <p>R$ 89,90</p>
-                                        </CardFooter>
-                                    </Card>
+                                <CarouselItem className="basis-61 pl-6">
+                                    <ShopCard 
+                                        title="Fone Bluetooth" 
+                                        description="Fone sem fio com estojo de carregamento"
+                                        image={fone}
+                                        price="89,90" 
+                                    />
                                 </CarouselItem>
 
                                 <CarouselItem className="basis-1/5 pl-6">
-                                    <Card className="w-[220px]">
-                                        <CardHeader>
-                                            <CardTitle>Mouse Sem Fio</CardTitle>
-                                            <CardDescription>
-                                                Mouse ergonômico com conexão USB
-                                            </CardDescription>
-                                        </CardHeader>
-
-                                        <CardContent>
-                                            <img
-                                                src={mouse}
-                                                alt="Mouse Sem Fio"
-                                                className="mx-auto h-56 w-56 object-contain"
-                                            />
-                                        </CardContent>
-
-                                        <CardFooter>
-                                            <p>R$ 59,90</p>
-                                        </CardFooter>
-                                    </Card>
+                                    <ShopCard
+                                        title="Mouse Sem Fio"
+                                        description="Mouse ergonômico com conexão USB"
+                                        image={mouse}
+                                        price="59,90"
+                                    />
                                 </CarouselItem>
 
                                 <CarouselItem className="basis-1/5 pl-6">
-                                    <Card className="w-[220px]">
-                                        <CardHeader>
-                                            <CardTitle>Teclado Mecânico</CardTitle>
-                                            <CardDescription>
-                                                Teclado mecânico compacto RGB
-                                            </CardDescription>
-                                        </CardHeader>
-
-                                        <CardContent>
-                                            <img
-                                                src={teclado}
-                                                alt="Teclado Mecânico"
-                                                className="mx-auto h-56 w-56 object-contain"
-                                            />
-                                        </CardContent>
-
-                                        <CardFooter>
-                                            <p>R$ 189,90</p>
-                                        </CardFooter>
-                                    </Card>
+                                    <ShopCard
+                                        title="Teclado Mecânico"
+                                        description="Teclado mecânico compacto RGB"
+                                        image={teclado}
+                                        price="189,90"
+                                    />
                                 </CarouselItem>
 
                                 <CarouselItem className="basis-1/5 pl-6">
-                                    <Card className="w-[220px]">
-                                        <CardHeader>
-                                            <CardTitle>Webcam Full HD</CardTitle>
-                                            <CardDescription>
-                                                Webcam com resolução Full HD
-                                            </CardDescription>
-                                        </CardHeader>
-
-                                        <CardContent>
-                                            <img
-                                                src={webcam}
-                                                alt="Webcam Full HD"
-                                                className="mx-auto h-56 w-56 object-contain"
-                                            />
-                                        </CardContent>
-
-                                        <CardFooter>
-                                            <p>R$ 119,90</p>
-                                        </CardFooter>
-                                    </Card>
+                                    <ShopCard
+                                        title="Webcam Full HD"
+                                        description="Webcam com resolução Full HD"
+                                        image={webcam}
+                                        price="119,90"
+                                    />
                                 </CarouselItem>
 
                                 <CarouselItem className="basis-1/5 pl-6">
-                                    <Card className="w-[220px]">
-                                        <CardHeader>
-                                            <CardTitle>Suporte para Notebook</CardTitle>
-                                            <CardDescription>
-                                                Suporte ajustável para notebook
-                                            </CardDescription>
-                                        </CardHeader>
-
-                                        <CardContent>
-                                            <img
-                                                src={suporte}
-                                                alt="Suporte para Notebook"
-                                                className="mx-auto h-56 w-56 object-contain"
-                                            />
-                                        </CardContent>
-
-                                        <CardFooter>
-                                            <p>R$ 79,90</p>
-                                        </CardFooter>
-                                    </Card>
+                                    <ShopCard
+                                        title="Suporte para Notebook"
+                                        description="Suporte ajustável para notebook"
+                                        image={suporte}
+                                        price="79,90"
+                                    />
                                 </CarouselItem>
                                 <CarouselItem className="basis-1/5 pl-6">
-                                    <Card className="w-[220px]">
-                                        <CardHeader>
-                                            <CardTitle>Headset Gamer</CardTitle>
-                                            <CardDescription>
-                                                Headset com microfone e som estéreo
-                                            </CardDescription>
-                                        </CardHeader>
-
-                                        <CardContent>
-                                            <img
-                                                src={fonegamer}
-                                                alt="Headset Gamer"
-                                                className="mx-auto h-56 w-56 object-contain"
-                                            />
-                                        </CardContent>
-
-                                        <CardFooter>
-                                            <p>R$ 159,90</p>
-                                        </CardFooter>
-                                    </Card>
+                                    <ShopCard
+                                        title="Suporte para Notebook"
+                                        description="Suporte ajustável para notebook"
+                                        image={suporte}
+                                        price="79,90"
+                                    />
                                 </CarouselItem>
 
                             </CarouselContent>
