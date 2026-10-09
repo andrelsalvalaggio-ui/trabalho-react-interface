@@ -93,9 +93,9 @@ function PaginaInicial() {
                                 </CarouselItem>
                                 <CarouselItem className="basis-1/5 pl-6">
                                     <ShopCard
-                                        title="Suporte para Notebook"
-                                        description="Suporte ajustável para notebook"
-                                        image={suporte}
+                                        title="Headset Gamer"
+                                        description="Headset com microfone e som estéreo"
+                                        image={fonegamer}
                                         price="79,90"
                                     />
                                 </CarouselItem>
