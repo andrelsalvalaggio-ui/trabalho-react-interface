@@ -14,7 +14,7 @@ export function ShopCard({
   image,
 }: ShopCardProps) {
   return (
-    <Card className="w-55">
+    <Card className="w-full sm:w-58 md:w-65 lg:w-60 xl:w-55 h-full">
       <CardHeader>
           <CardTitle>{title}</CardTitle>
           <CardDescription>
@@ -22,7 +22,7 @@ export function ShopCard({
           </CardDescription>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="h-full">
           <img
               src={image}
               alt={title}

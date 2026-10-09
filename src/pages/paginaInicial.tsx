@@ -32,13 +32,13 @@ function PaginaInicial() {
         <>
             <HeaderInicio />
 
-            <main className="w-full">
-                <div className="mx-auto mt-10 w-fit">
+            <main className="w-full flex justify-center">
+                <div className="p-15 min-w-10 w-fit max-w-[1220px]">
                     <h2 className="mb-6 text-xl font-semibold">
                         Baseado nas suas atividades recentes
                     </h2>
 
-                    <div className="relative w-305">
+                    <div className="relative">
                         <Carousel
                             setApi={setApi}
                             opts={{
@@ -46,8 +46,8 @@ function PaginaInicial() {
                                 slidesToScroll: 1,
                             }}
                         >
-                            <CarouselContent className="-ml-6 py-2">
-                                <CarouselItem className="basis-61 pl-6">
+                            <CarouselContent className="flex -ml-6 py-2">
+                                <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3  lg:basis-1/3 xl:basis-1/4">
                                     <ShopCard 
                                         title="Fone Bluetooth" 
                                         description="Fone sem fio com estojo de carregamento"
@@ -56,7 +56,7 @@ function PaginaInicial() {
                                     />
                                 </CarouselItem>
 
-                                <CarouselItem className="basis-1/5 pl-6">
+                                <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                                     <ShopCard
                                         title="Mouse Sem Fio"
                                         description="Mouse ergonômico com conexão USB"
@@ -65,7 +65,7 @@ function PaginaInicial() {
                                     />
                                 </CarouselItem>
 
-                                <CarouselItem className="basis-1/5 pl-6">
+                                <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                                     <ShopCard
                                         title="Teclado Mecânico"
                                         description="Teclado mecânico compacto RGB"
@@ -74,7 +74,7 @@ function PaginaInicial() {
                                     />
                                 </CarouselItem>
 
-                                <CarouselItem className="basis-1/5 pl-6">
+                                <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                                     <ShopCard
                                         title="Webcam Full HD"
                                         description="Webcam com resolução Full HD"
@@ -83,7 +83,7 @@ function PaginaInicial() {
                                     />
                                 </CarouselItem>
 
-                                <CarouselItem className="basis-1/5 pl-6">
+                                <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                                     <ShopCard
                                         title="Suporte para Notebook"
                                         description="Suporte ajustável para notebook"
@@ -91,7 +91,7 @@ function PaginaInicial() {
                                         price="79,90"
                                     />
                                 </CarouselItem>
-                                <CarouselItem className="basis-1/5 pl-6">
+                                <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                                     <ShopCard
                                         title="Suporte para Notebook"
                                         description="Suporte ajustável para notebook"
