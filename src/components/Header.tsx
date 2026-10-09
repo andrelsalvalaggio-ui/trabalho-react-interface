@@ -15,7 +15,6 @@ export function Header() {
 
           <Button variant="ghost">Sobre nós</Button>
 
-          <Button variant="ghost">Criar Conta</Button>
         </div>
       </div>
     </header>
