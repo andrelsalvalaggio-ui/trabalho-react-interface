@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -15,6 +15,7 @@ import {
 import PaginaInicial from "./paginaInicial";
 import google from "../assets/google.svg";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -27,10 +28,10 @@ function App() {
 }
 
 function Login() {
+  const navigate = useNavigate();
   return (
     <>
       <Header />
-
       <div className="flex h-[80vh] w-full items-center justify-center">
         <Card className="w-100">
           <CardHeader>
@@ -82,17 +83,22 @@ function Login() {
           </CardContent>
 
           <CardFooter className="flex-col gap-2">
-            <Button type="submit" className="w-full">
+            <Button
+              type="button"
+              className="w-full"
+              onClick={() => navigate("/inicio")}
+            >
               Login
             </Button>
 
-            <Button variant="outline" className="w-full">
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full"
+              onClick={() => navigate("/inicio")}
+            >
               Login Com Google
-              <img
-                src={google}
-                alt="Google"
-                className="h-4 w-4"
-              />
+              <img src={google} alt="Google" className="h-4 w-4" />
             </Button>
           </CardFooter>
         </Card>
