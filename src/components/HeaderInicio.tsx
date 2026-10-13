@@ -29,18 +29,30 @@ export function HeaderInicio() {
         <div className="flex items-center gap-4">
           <h1>SimpleShop</h1>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger  className= "bg-primary-foreground" render={<Button variant="outline" />}>
-              Categorias
-            </DropdownMenuTrigger>
+            <DropdownMenu>
+                <DropdownMenuTrigger
+                    className="bg-primary-foreground"
+                    render={<Button variant="outline" />}
+                >
+                    Categorias
+                </DropdownMenuTrigger>
 
-            <DropdownMenuContent>
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Tecnologia</DropdownMenuItem>
-                <DropdownMenuItem>Acessórios</DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                <DropdownMenuContent className="w-42">
+                    <DropdownMenuGroup>
+                        <DropdownMenuItem>Tecnologia</DropdownMenuItem>
+                        <DropdownMenuItem>Acessórios</DropdownMenuItem>
+                        <DropdownMenuItem>Roupas</DropdownMenuItem>
+                        <DropdownMenuItem>Calçados</DropdownMenuItem>
+                        <DropdownMenuItem>Casa e Decoração</DropdownMenuItem>
+                        <DropdownMenuItem>Beleza e Cuidados</DropdownMenuItem>
+                        <DropdownMenuItem>Esportes e Lazer</DropdownMenuItem>
+                        <DropdownMenuItem>Eletrodomésticos</DropdownMenuItem>
+                        <DropdownMenuItem>Brinquedos e Jogos</DropdownMenuItem>
+                        <DropdownMenuItem>Outros</DropdownMenuItem>
+                    </DropdownMenuGroup>
+                </DropdownMenuContent>
+            </DropdownMenu>
+
         </div>
 
         <div className="flex justify-center">
