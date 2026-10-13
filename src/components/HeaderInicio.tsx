@@ -27,7 +27,7 @@ export function HeaderInicio() {
     <header className="w-full border-b border-gray-200">
       <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center px-8 py-6">
         <div className="flex items-center gap-4">
-          <h1>LifeShop</h1>
+          <h1>SimpleShop</h1>
 
           <DropdownMenu>
             <DropdownMenuTrigger  className= "bg-primary-foreground" render={<Button variant="outline" />}>
