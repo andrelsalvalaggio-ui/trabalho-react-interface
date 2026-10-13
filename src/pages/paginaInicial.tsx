@@ -164,7 +164,39 @@ function PaginaInicial() {
 
                     </div>
                 </section>
-                
+
+
+                <section className="w-full max-w-[1220px] px-6 mt-16 mb-10">
+                        <h2 className="mb-6 text-xl font-semibold">
+                        Ofertas do Dia
+                        </h2>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <ShopCard
+                                className="!w-full"
+                                title="Fone Bluetooth"
+                                description="Fone sem fio com estojo de carregamento"
+                                image={fone}
+                                price="69,90"
+                            />
+
+                            <ShopCard
+                                className="!w-full"
+                                title="Teclado Mecânico"
+                                description="Teclado mecânico compacto RGB"
+                                image={teclado}
+                                price="149,90"
+                            />
+
+                            <ShopCard
+                                className="!w-full"
+                                title="Headset Gamer"
+                                description="Headset com microfone e som estéreo"
+                                image={fonegamer}
+                                price="119,90"
+                            />
+                        </div>
+                    </section>
             </main>
         </>
     );
