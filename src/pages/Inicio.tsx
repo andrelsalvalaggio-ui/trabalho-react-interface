@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { HeaderInicio } from "../components/HeaderInicio";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "../ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi, } from "../ui/carousel";
 import fone from "../assets/fonebluetooth.png";
 import mouse from "../assets/mouse.png";

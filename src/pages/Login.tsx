@@ -3,17 +3,11 @@ import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Header } from "../components/Header";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import PaginaInicial from "./paginaInicial";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "../ui/card";
+import PaginaInicial from "./Inicio";
 import google from "../assets/google.svg";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 
 function App() {
@@ -28,6 +22,7 @@ function App() {
 }
 
 function Login() {
+  const [mostrarSenha, setMostrarSenha] = useState(false);
   const navigate = useNavigate();
   return (
     <>
@@ -72,11 +67,40 @@ function Login() {
                     </a>
                   </div>
 
-                  <Input
-                    id="password-spacing"
-                    type="password"
-                    required
+                  <div className="relative">
+                    <Input
+                      id="password-spacing"
+                      type={mostrarSenha ? "text" : "password"}
+                      required
+                      className="pr-10"
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => setMostrarSenha(!mostrarSenha)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                      aria-label={mostrarSenha ? "Esconder senha" : "Mostrar senha"}
+                    >
+                      {mostrarSenha ? (
+                        <EyeOff className="h-4 w-4" />
+                      ) : (
+                        <Eye className="h-4 w-4" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <input
+                    id="lembrar-senha"
+                    type="checkbox"
+                    className="h-4 w-4 cursor-pointer"
                   />
+                  <Label
+                    htmlFor="lembrar-senha"
+                    className="cursor-pointer font-normal"
+                  >
+                    Lembrar senha
+                  </Label>
                 </div>
               </div>
             </form>
@@ -102,7 +126,7 @@ function Login() {
             </Button>
           </CardFooter>
         </Card>
-      </div>
+      </div >
     </>
   );
 }

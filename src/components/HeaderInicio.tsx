@@ -1,64 +1,48 @@
 import { Button } from "../ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "../ui/input-group";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger, } from "../ui/dropdown-menu";
+import { InputGroup, InputGroupAddon, InputGroupInput, } from "../ui/input-group";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import {
-  BadgeCheckIcon,
-  BellIcon,
-  CreditCardIcon,
-  LogOutIcon,
-  SearchIcon,
-  ShoppingCartIcon,
-} from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, SearchIcon, ShoppingCartIcon, } from "lucide-react";
 
 export function HeaderInicio() {
+  const navigate = useNavigate();
   return (
     <header className="w-full border-b border-gray-200">
       <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center px-8 py-6">
         <div className="flex items-center gap-4">
           <h1>SimpleShop</h1>
 
-            <DropdownMenu>
-                <DropdownMenuTrigger
-                    className="bg-primary-foreground"
-                    render={<Button variant="outline" />}
-                >
-                    Categorias
-                </DropdownMenuTrigger>
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className="bg-primary-foreground"
+              render={<Button variant="outline" />}
+            >
+              Categorias
+            </DropdownMenuTrigger>
 
-                <DropdownMenuContent className="w-42">
-                    <DropdownMenuGroup>
-                        <DropdownMenuItem>Tecnologia</DropdownMenuItem>
-                        <DropdownMenuItem>Acessórios</DropdownMenuItem>
-                        <DropdownMenuItem>Roupas</DropdownMenuItem>
-                        <DropdownMenuItem>Calçados</DropdownMenuItem>
-                        <DropdownMenuItem>Casa e Decoração</DropdownMenuItem>
-                        <DropdownMenuItem>Beleza e Cuidados</DropdownMenuItem>
-                        <DropdownMenuItem>Esportes e Lazer</DropdownMenuItem>
-                        <DropdownMenuItem>Eletrodomésticos</DropdownMenuItem>
-                        <DropdownMenuItem>Brinquedos e Jogos</DropdownMenuItem>
-                        <DropdownMenuItem>Outros</DropdownMenuItem>
-                    </DropdownMenuGroup>
-                </DropdownMenuContent>
-            </DropdownMenu>
+            <DropdownMenuContent className="w-42">
+              <DropdownMenuGroup>
+                <DropdownMenuItem>Tecnologia</DropdownMenuItem>
+                <DropdownMenuItem>Acessórios</DropdownMenuItem>
+                <DropdownMenuItem>Roupas</DropdownMenuItem>
+                <DropdownMenuItem>Calçados</DropdownMenuItem>
+                <DropdownMenuItem>Casa e Decoração</DropdownMenuItem>
+                <DropdownMenuItem>Beleza e Cuidados</DropdownMenuItem>
+                <DropdownMenuItem>Esportes e Lazer</DropdownMenuItem>
+                <DropdownMenuItem>Eletrodomésticos</DropdownMenuItem>
+                <DropdownMenuItem>Brinquedos e Jogos</DropdownMenuItem>
+                <DropdownMenuItem>Outros</DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-            <Button variant="outline">
+          <Button variant="outline">
             Ofertas
-            </Button>
-            <Button variant="outline">
-                Vender
-            </Button>
+          </Button>
+          <Button variant="outline">
+            Vender
+          </Button>
 
         </div>
 
@@ -115,7 +99,7 @@ export function HeaderInicio() {
 
               <DropdownMenuSeparator />
 
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/")}>
                 <LogOutIcon />
                 Sair
               </DropdownMenuItem>
