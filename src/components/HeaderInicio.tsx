@@ -53,6 +53,13 @@ export function HeaderInicio() {
                 </DropdownMenuContent>
             </DropdownMenu>
 
+            <Button variant="outline">
+            Ofertas
+            </Button>
+            <Button variant="outline">
+                Vender
+            </Button>
+
         </div>
 
         <div className="flex justify-center">
