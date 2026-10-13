@@ -1,14 +1,22 @@
+
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Header } from "../components/Header";
-import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "../ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import PaginaInicial from "./Inicio";
 import google from "../assets/google.svg";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Eye, EyeOff } from "lucide-react";
-
 
 function App() {
   return (
@@ -24,9 +32,16 @@ function App() {
 function Login() {
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const navigate = useNavigate();
+
+  function handleLogin(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    navigate("/inicio");
+  }
+
   return (
     <>
       <Header />
+
       <div className="flex h-[80vh] w-full items-center justify-center">
         <Card className="w-100">
           <CardHeader>
@@ -42,22 +57,27 @@ function Login() {
           </CardHeader>
 
           <CardContent>
-            <form>
+            <form id="login-form" onSubmit={handleLogin}>
               <div className="flex flex-col gap-6">
+
                 <div className="grid gap-2">
-                  <Label htmlFor="email-spacing">Usuário/Email</Label>
+                  <Label htmlFor="email-spacing">
+                    Usuário/Email
+                  </Label>
 
                   <Input
                     id="email-spacing"
-                    type="email"
-                    placeholder="marcsilva2/m@example.com"
+                    type="text"
+                    placeholder="exemplo@email.com"
                     required
                   />
                 </div>
 
                 <div className="grid gap-2">
                   <div className="flex items-center">
-                    <Label htmlFor="password-spacing">Senha</Label>
+                    <Label htmlFor="password-spacing">
+                      Senha
+                    </Label>
 
                     <a
                       href="#"
@@ -79,7 +99,11 @@ function Login() {
                       type="button"
                       onClick={() => setMostrarSenha(!mostrarSenha)}
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                      aria-label={mostrarSenha ? "Esconder senha" : "Mostrar senha"}
+                      aria-label={
+                        mostrarSenha
+                          ? "Esconder senha"
+                          : "Mostrar senha"
+                      }
                     >
                       {mostrarSenha ? (
                         <EyeOff className="h-4 w-4" />
@@ -89,12 +113,14 @@ function Login() {
                     </button>
                   </div>
                 </div>
+
                 <div className="flex items-center gap-2">
                   <input
                     id="lembrar-senha"
                     type="checkbox"
                     className="h-4 w-4 cursor-pointer"
                   />
+
                   <Label
                     htmlFor="lembrar-senha"
                     className="cursor-pointer font-normal"
@@ -102,15 +128,16 @@ function Login() {
                     Lembrar senha
                   </Label>
                 </div>
+
               </div>
             </form>
           </CardContent>
 
           <CardFooter className="flex-col gap-2">
             <Button
-              type="button"
+              type="submit"
+              form="login-form"
               className="w-full"
-              onClick={() => navigate("/inicio")}
             >
               Login
             </Button>
@@ -122,11 +149,15 @@ function Login() {
               onClick={() => navigate("/inicio")}
             >
               Login Com Google
-              <img src={google} alt="Google" className="h-4 w-4" />
+              <img
+                src={google}
+                alt="Google"
+                className="h-4 w-4"
+              />
             </Button>
           </CardFooter>
         </Card>
-      </div >
+      </div>
     </>
   );
 }
