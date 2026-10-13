@@ -59,6 +59,9 @@ export function HeaderInicio() {
           <Button variant="ghost" size="icon">
             <ShoppingCartIcon />
           </Button>
+          <Button variant="ghost" size= "icon">
+            <BellIcon></BellIcon>
+          </Button>
 
           <DropdownMenu>
             <DropdownMenuTrigger
@@ -89,11 +92,6 @@ export function HeaderInicio() {
                 <DropdownMenuItem>
                   <CreditCardIcon />
                   Dados Financeiros
-                </DropdownMenuItem>
-
-                <DropdownMenuItem>
-                  <BellIcon />
-                  Notificações
                 </DropdownMenuItem>
               </DropdownMenuGroup>
 
