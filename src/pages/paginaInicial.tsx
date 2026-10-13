@@ -171,13 +171,16 @@ function PaginaInicial() {
                         Ofertas do Dia
                         </h2>
 
+
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <ShopCard
                                 className="!w-full"
                                 title="Fone Bluetooth"
                                 description="Fone sem fio com estojo de carregamento"
                                 image={fone}
+                                oldPrice="89,90"
                                 price="69,90"
+                                discount="22% OFF"
                             />
 
                             <ShopCard
@@ -185,7 +188,9 @@ function PaginaInicial() {
                                 title="Teclado Mecânico"
                                 description="Teclado mecânico compacto RGB"
                                 image={teclado}
+                                oldPrice="189,90"
                                 price="149,90"
+                                discount="21% OFF"
                             />
 
                             <ShopCard
@@ -193,9 +198,12 @@ function PaginaInicial() {
                                 title="Headset Gamer"
                                 description="Headset com microfone e som estéreo"
                                 image={fonegamer}
+                                oldPrice="159,90"
                                 price="119,90"
+                                discount="25% OFF"
                             />
                         </div>
+
                     </section>
             </main>
         </>

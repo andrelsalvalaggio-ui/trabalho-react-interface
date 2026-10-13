@@ -1,11 +1,7 @@
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
+  Card, CardContent, CardDescription,
+  CardFooter, CardHeader, CardTitle
 } from "../ui/card";
 
 interface ShopCardProps {
@@ -14,6 +10,8 @@ interface ShopCardProps {
   price: string;
   image: string;
   className?: string;
+  oldPrice?: string;
+  discount?: string;
 }
 
 export function ShopCard({
@@ -22,9 +20,18 @@ export function ShopCard({
   price,
   image,
   className = "",
+  oldPrice,
+  discount,
 }: ShopCardProps) {
   return (
-    <Card className={`w-full sm:w-58 md:w-65 lg:w-60 xl:w-55 h-full ${className}`}>
+    <Card className={`relative w-full sm:w-58 md:w-65 lg:w-60 xl:w-55 h-full ${className}`}>
+
+      {discount && (
+        <span className="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-md">
+          {discount}
+        </span>
+      )}
+
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
@@ -38,8 +45,16 @@ export function ShopCard({
         />
       </CardContent>
 
-      <CardFooter>
-        <p>R$ {price}</p>
+      <CardFooter className="flex flex-col items-start gap-1">
+        {oldPrice && (
+          <p className="text-sm text-gray-500 line-through">
+            R$ {oldPrice}
+          </p>
+        )}
+
+        <p className="font-semibold text-lg">
+          R$ {price}
+        </p>
       </CardFooter>
     </Card>
   );
