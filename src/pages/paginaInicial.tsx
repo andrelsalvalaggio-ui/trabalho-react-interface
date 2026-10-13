@@ -131,34 +131,34 @@ function PaginaInicial() {
                             title="Mouse Gamer Fallen"
                             description="Mouse gamer leve com sensor de alta precisão"
                             image={mousegamer}
-                            price="159,90"
+                            price="259,90"
                         />
 
                         <ShopCard
-                            title="Mouse Gamer Fallen"
-                            description="Mouse gamer leve com sensor de alta precisão"
-                            image={mousegamer}
+                            title="Mouse Sem Fio"
+                            description="Mouse ergonômico com conexão sem fio"
+                            image={mouse}
                             price="159,90"
                         />
                         
                         <ShopCard
-                            title="Mouse Gamer Fallen"
-                            description="Mouse gamer leve com sensor de alta precisão"
-                            image={mousegamer}
+                            title="Teclado Mecânico"
+                            description="Teclado mecânico compacto RGB"
+                            image={teclado}
+                            price="140,90"
+                        />
+                        
+                        <ShopCard
+                            title="Fone Bluetooth"
+                            description="Fone sem fio com estojo de carregamento"
+                            image={fone}
                             price="159,90"
                         />
                         
                         <ShopCard
-                            title="Mouse Gamer Fallen"
-                            description="Mouse gamer leve com sensor de alta precisão"
-                            image={mousegamer}
-                            price="159,90"
-                        />
-                        
-                        <ShopCard
-                            title="Mouse Gamer Fallen"
-                            description="Mouse gamer leve com sensor de alta precisão"
-                            image={mousegamer}
+                            title="Webcam Full HD"
+                            description="Webcam com resolução full HD"
+                            image={webcam}
                             price="159,90"
                         />
 
