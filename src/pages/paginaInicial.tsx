@@ -8,6 +8,7 @@ import teclado from "../assets/teclado.png";
 import webcam from "../assets/webcam.png";
 import suporte from "../assets/suporte.png";
 import fonegamer from "../assets/fonegamer.png";
+import mousegamer from "../assets/mousegamer.png";
 import { ShopCard } from "../components/ShopCard";
 
 function PaginaInicial() {
@@ -32,7 +33,7 @@ function PaginaInicial() {
         <>
             <HeaderInicio />
 
-            <main className="w-full flex justify-center">
+            <main className="w-full flex flex-col items-center">
                 <div className="p-15 min-w-10 w-fit max-w-[1220px]">
                     <h2 className="mb-6 text-xl font-semibold">
                         Baseado nas suas atividades recentes
@@ -119,6 +120,51 @@ function PaginaInicial() {
                         </div>
                     </div>
                 </div>
+
+            <section className="w-full max-w-[1220px] px-6 mt-16 mb-10">
+                    <h2 className="mb-6 text-xl font-semibold">
+                        Produtos em destaque
+                    </h2>
+
+                    <div className="flex flex-wrap gap-4">
+                        <ShopCard
+                            title="Mouse Gamer Fallen"
+                            description="Mouse gamer leve com sensor de alta precisão"
+                            image={mousegamer}
+                            price="159,90"
+                        />
+
+                        <ShopCard
+                            title="Mouse Gamer Fallen"
+                            description="Mouse gamer leve com sensor de alta precisão"
+                            image={mousegamer}
+                            price="159,90"
+                        />
+                        
+                        <ShopCard
+                            title="Mouse Gamer Fallen"
+                            description="Mouse gamer leve com sensor de alta precisão"
+                            image={mousegamer}
+                            price="159,90"
+                        />
+                        
+                        <ShopCard
+                            title="Mouse Gamer Fallen"
+                            description="Mouse gamer leve com sensor de alta precisão"
+                            image={mousegamer}
+                            price="159,90"
+                        />
+                        
+                        <ShopCard
+                            title="Mouse Gamer Fallen"
+                            description="Mouse gamer leve com sensor de alta precisão"
+                            image={mousegamer}
+                            price="159,90"
+                        />
+
+                    </div>
+                </section>
+                
             </main>
         </>
     );
