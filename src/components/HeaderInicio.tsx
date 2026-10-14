@@ -1,0 +1,110 @@
+import { Button } from "../ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger, } from "../ui/dropdown-menu";
+import { InputGroup, InputGroupAddon, InputGroupInput, } from "../ui/input-group";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useNavigate } from "react-router-dom";
+import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, SearchIcon, ShoppingCartIcon, } from "lucide-react";
+
+export function HeaderInicio() {
+  const navigate = useNavigate();
+  return (
+    <header className="w-full border-b border-gray-200">
+      <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center px-8 py-6">
+        <div className="flex items-center gap-4">
+          <h1>SimpleShop</h1>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className="bg-primary-foreground"
+              render={<Button variant="outline" />}
+            >
+              Categorias
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent className="w-42">
+              <DropdownMenuGroup>
+                <DropdownMenuItem>Tecnologia</DropdownMenuItem>
+                <DropdownMenuItem>Acessórios</DropdownMenuItem>
+                <DropdownMenuItem>Roupas</DropdownMenuItem>
+                <DropdownMenuItem>Calçados</DropdownMenuItem>
+                <DropdownMenuItem>Casa e Decoração</DropdownMenuItem>
+                <DropdownMenuItem>Beleza e Cuidados</DropdownMenuItem>
+                <DropdownMenuItem>Esportes e Lazer</DropdownMenuItem>
+                <DropdownMenuItem>Eletrodomésticos</DropdownMenuItem>
+                <DropdownMenuItem>Brinquedos e Jogos</DropdownMenuItem>
+                <DropdownMenuItem>Outros</DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <Button variant="outline">
+            Ofertas
+          </Button>
+          <Button variant="outline">
+            Vender
+          </Button>
+
+        </div>
+
+        <div className="flex justify-center">
+          <InputGroup className="w-96">
+            <InputGroupInput placeholder="Buscar..." />
+            <InputGroupAddon>
+              <SearchIcon />
+            </InputGroupAddon>
+          </InputGroup>
+        </div>
+
+        <div className="flex items-center justify-end gap-2">
+          <Button variant="ghost" size="icon">
+            <ShoppingCartIcon />
+          </Button>
+          <Button variant="ghost" size= "icon">
+            <BellIcon></BellIcon>
+          </Button>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              render={
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full"
+                >
+                  <Avatar>
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="shadcn"
+                    />
+                    <AvatarFallback>LR</AvatarFallback>
+                  </Avatar>
+                </Button>
+              }
+            />
+
+            <DropdownMenuContent align="end">
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <BadgeCheckIcon />
+                  Conta
+                </DropdownMenuItem>
+
+                <DropdownMenuItem>
+                  <CreditCardIcon />
+                  Dados Financeiros
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem onClick={() => navigate("/")}>
+                <LogOutIcon />
+                Sair
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+    </header>
+  );
+}
