@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button.tsx";
 import { Label } from "../../ui/label.tsx";
@@ -42,7 +43,6 @@ function Login() {
     <>
       <Header isLogado={false} />
 
-
       <div className="flex h-[80vh] w-full max-h-screen items-center justify-center overflow-hidden">
 
         <div className={`fixed w-[2250px] 2xl:w-[120%] opacity-50 top-0 -z-1`}>
@@ -74,7 +74,7 @@ function Login() {
                   <Input
                     id="email-spacing"
                     type="text"
-                    placeholder="exemplo@email.com"
+                    placeholder="Usuário ou email"
                     required
                   />
                 </div>
@@ -144,7 +144,6 @@ function Login() {
               type="submit"
               form="login-form"
               className="w-full"
-              onClick={() => navigate("/inicio")}
             >
               Continuar
             </Button>
