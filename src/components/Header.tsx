@@ -131,7 +131,7 @@ export function Header() {
               </DropdownMenu>
             </>
           :
-            <Button variant="outline" onClick={() => setIsLogado(true)}>
+            <Button variant="outline" onClick={() => navigate("/")}>
               Entrar
             </Button>
           }
