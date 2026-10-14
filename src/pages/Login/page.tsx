@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import { Button } from "../ui/button";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Header } from "../components/Header";
+import { Button } from "../../ui/button.tsx";
+import { Label } from "../../ui/label.tsx";
+import { Input } from "../../ui/input.tsx";
+import { Header } from "../../components/Header.tsx";
 import {
   Card,
   CardAction,
@@ -11,12 +11,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
-import PaginaInicial from "./Inicio/page.tsx";
+} from "../../ui/card.tsx";
+import PaginaInicial from "../Inicio/page.tsx";
 import google from "../assets/google.svg";
 import { useState, type FormEvent } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import { WavesBG } from "../components/Wave.tsx";
+import { WavesBG } from "../../components/Wave.tsx";
 
 function App() {
   return (
