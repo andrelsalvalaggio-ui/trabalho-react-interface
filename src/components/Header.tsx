@@ -77,7 +77,10 @@ export function Header({
               <Button variant="ghost" size="icon">
                 <ShoppingCartIcon />
               </Button>
-
+              <Button variant="ghost" size= "icon">
+                <BellIcon></BellIcon>
+              </Button>
+              
               <DropdownMenu>
                 <DropdownMenuTrigger
                   render={
@@ -107,11 +110,6 @@ export function Header({
                     <DropdownMenuItem>
                       <CreditCardIcon />
                       Dados Financeiros
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem>
-                      <BellIcon />
-                      Notificações
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
 

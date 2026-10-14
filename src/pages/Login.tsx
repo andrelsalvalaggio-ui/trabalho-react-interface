@@ -80,7 +80,7 @@ function Login() {
 
                     <a
                       href="#"
-                      className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                      className="ml-auto inline-block text-primary text-sm underline-offset-4 underline"
                     >
                       Dificuldade no acesso?
                     </a>
