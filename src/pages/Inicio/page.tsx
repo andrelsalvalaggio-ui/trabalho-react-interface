@@ -10,10 +10,18 @@ import { WavesBG } from "../../components/Wave";
 import Footer from "../../components/Footer";
 
 function PaginaInicial() {
+    const [isLogado, setIsLogado] = useState(() => {
+        const saved = localStorage.getItem('isLogado');
+        return saved ? JSON.parse(saved) : null;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('isLogado', JSON.stringify(isLogado));
+    }, [isLogado]);
 
     return (
         <>
-            <Header isLogado={true} />
+            <Header />
 
             <main className="w-full flex flex-col items-center">
                 <section className="p-15 px-6 min-w-10 w-fit max-w-305">

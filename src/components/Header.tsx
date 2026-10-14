@@ -5,15 +5,23 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useNavigate } from "react-router-dom";
 import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, SearchIcon, ShoppingCartIcon, } from "lucide-react";
 import logo from "../assets/simpleShop.svg"
+import { useEffect, useState } from "react";
 
 interface HeaderProps {
   isLogado: boolean
 }
 
-export function Header({
-  isLogado
-}: HeaderProps) {
+export function Header() {
   const navigate = useNavigate();
+  const [isLogado, setIsLogado] = useState(() => {
+      const saved = localStorage.getItem('isLogado');
+      return saved ? JSON.parse(saved) : null;
+  });
+
+  useEffect(() => {
+      localStorage.setItem('isLogado', JSON.stringify(isLogado));
+  }, [isLogado]);
+
   return (
     <header className="flex justify-center bg-[#ffffff60] backdrop-blur-xs w-full border-b border-gray-200 z-100">
       <div className="flex w-305 justify-between items-center gap-x-5 px-8 py-6">
@@ -113,7 +121,7 @@ export function Header({
                     
                     <DropdownMenuSeparator />
 
-                    <DropdownMenuItem onClick={() => navigate("/")}>
+                    <DropdownMenuItem onClick={() => setIsLogado(false)}>
                       <LogOutIcon />
                       Sair
                     </DropdownMenuItem>
@@ -123,7 +131,7 @@ export function Header({
               </DropdownMenu>
             </>
           :
-            <Button variant="outline" onClick={() => navigate("/inicio")}>
+            <Button variant="outline" onClick={() => setIsLogado(true)}>
               Entrar
             </Button>
           }
