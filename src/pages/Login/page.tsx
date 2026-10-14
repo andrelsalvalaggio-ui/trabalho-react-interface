@@ -15,7 +15,7 @@ import {
 } from "../../ui/card.tsx";
 import PaginaInicial from "../Inicio/page.tsx";
 import google from "../../assets/google.svg";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { WavesBG } from "../../components/Wave.tsx";
 
@@ -36,12 +36,22 @@ function Login() {
 
   function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setIsLogado(true)
     navigate("/inicio");
   }
 
+  const [isLogado, setIsLogado] = useState(() => {
+      const saved = localStorage.getItem('isLogado');
+      return saved ? JSON.parse(saved) : null;
+  });
+
+  useEffect(() => {
+      localStorage.setItem('isLogado', JSON.stringify(isLogado));
+  }, [isLogado]);
+
   return (
     <>
-      <Header isLogado={false} />
+      <Header />
 
       <div className="flex h-[80vh] w-full max-h-screen items-center justify-center overflow-hidden">
 
@@ -152,7 +162,6 @@ function Login() {
               type="button"
               variant="outline"
               className="w-full"
-              onClick={() => navigate("/inicio")}
             >
               <img
                 src={google}
