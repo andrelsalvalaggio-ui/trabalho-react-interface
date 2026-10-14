@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
@@ -13,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import PaginaInicial from "./Inicio";
+import PaginaInicial from "./Inicio/page.tsx";
 import google from "../assets/google.svg";
 import { useState, type FormEvent } from "react";
 import { Eye, EyeOff } from "lucide-react";
@@ -40,7 +39,7 @@ function Login() {
 
   return (
     <>
-      <Header />
+      <Header isLogado={false} />
 
       <div className="flex h-[80vh] w-full items-center justify-center">
         <Card className="w-100">
