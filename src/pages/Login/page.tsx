@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from "../../ui/card.tsx";
 import PaginaInicial from "../Inicio/page.tsx";
-import google from "../assets/google.svg";
+import google from "../../assets/google.svg";
 import { useState, type FormEvent } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { WavesBG } from "../../components/Wave.tsx";
