@@ -13,7 +13,7 @@ function PaginaInicial() {
 
     return (
         <>
-            <Header isLogado={true} />
+            <Header />
 
             <main className="w-full flex flex-col items-center">
                 <section className="p-15 px-6 min-w-10 w-fit max-w-305">
