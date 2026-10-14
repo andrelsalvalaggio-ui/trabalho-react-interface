@@ -45,7 +45,7 @@ function Login() {
 
       <div className="flex h-[80vh] w-full max-h-screen items-center justify-center overflow-hidden">
 
-        <div className={`fixed w-[200%] opacity-50 top-0 -z-1`}>
+        <div className={`fixed w-[2250px] 2xl:w-[120%] opacity-50 top-0 -z-1`}>
             <WavesBG/>
         </div>
 
@@ -58,7 +58,7 @@ function Login() {
             </CardDescription>
 
             <CardAction>
-              <Button variant="link">Criar Conta</Button>
+              <Button variant="link" className={"cursor-pointer"}>Criar Conta</Button>
             </CardAction>
           </CardHeader>
 
@@ -87,7 +87,7 @@ function Login() {
 
                     <a
                       href="#"
-                      className="ml-auto inline-block text-primary text-sm underline-offset-4 underline"
+                      className="ml-auto inline-block text-primary text-sm underline-offset-4"
                     >
                       Dificuldade no acesso?
                     </a>
