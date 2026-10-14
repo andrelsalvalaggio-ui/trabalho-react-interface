@@ -36,7 +36,7 @@ export function InicioCarousel() {
                 }}
                 className="min-w-10 w-fit max-w-305"
             >
-                <CarouselContent className="flex -ml-6 py-2">
+                <CarouselContent className="flex -ml-6 p-2">
                     <CarouselItem className=" basis-full sm:basis-1/2 pl-6 md:basis-1/3  lg:basis-1/3 xl:basis-1/4">
                         <ShopCard 
                             title="Fone Bluetooth" 
@@ -91,8 +91,8 @@ export function InicioCarousel() {
                     </CarouselItem>
 
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious size="icon-lg" />
+                <CarouselNext size="icon-lg" />
             </Carousel>
 
             <div className="mt-6 flex justify-center gap-2">

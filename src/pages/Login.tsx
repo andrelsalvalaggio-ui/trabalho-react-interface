@@ -16,6 +16,7 @@ import PaginaInicial from "./Inicio/page.tsx";
 import google from "../assets/google.svg";
 import { useState, type FormEvent } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { WavesBG } from "../components/Wave.tsx";
 
 function App() {
   return (
@@ -41,10 +42,16 @@ function Login() {
     <>
       <Header isLogado={false} />
 
-      <div className="flex h-[80vh] w-full items-center justify-center">
-        <Card className="w-100">
+
+      <div className="flex h-[80vh] w-full max-h-screen items-center justify-center overflow-hidden">
+
+        <div className={`fixed w-[200%] opacity-50 top-0 -z-1`}>
+            <WavesBG/>
+        </div>
+
+        <Card className="w-120">
           <CardHeader>
-            <CardTitle>Login</CardTitle>
+            <CardTitle>Entrar</CardTitle>
 
             <CardDescription>
               Insira seu usuário/email abaixo para acessar sua conta
@@ -137,8 +144,9 @@ function Login() {
               type="submit"
               form="login-form"
               className="w-full"
+              onClick={() => navigate("/inicio")}
             >
-              Login
+              Continuar
             </Button>
 
             <Button
@@ -147,12 +155,12 @@ function Login() {
               className="w-full"
               onClick={() => navigate("/inicio")}
             >
-              Login Com Google
               <img
                 src={google}
                 alt="Google"
                 className="h-4 w-4"
               />
+              Entrar com o Google
             </Button>
           </CardFooter>
         </Card>

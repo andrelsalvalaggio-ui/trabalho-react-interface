@@ -15,7 +15,7 @@ export function Header({
 }: HeaderProps) {
   const navigate = useNavigate();
   return (
-    <header className="flex justify-center w-full border-b border-gray-200">
+    <header className="flex justify-center bg-[#ffffff60] backdrop-blur-xs w-full border-b border-gray-200 z-100">
       <div className="flex w-305 justify-between items-center gap-x-5 px-8 py-6">
         <div className="flex w-full items-center gap-4">
           <img 
@@ -26,37 +26,36 @@ export function Header({
 
           <DropdownMenu>
 
-            <Button onClick={() => navigate("/inicio")} variant="link" className="text-gray-700 hover:text-primary hover:bg-none">
+            <Button onClick={() => navigate("/inicio")} variant="link" className="text-cyan-900 underline cursor-pointer hover:text-primary hover:bg-none">
               Início
             </Button>
 
             <DropdownMenuTrigger
-              className="text-cyan-900"
-              render={<Button variant="link" className="text-gray-700 hover:text-primary" />}
+              render={<Button variant="link" className="text-gray-700 hover:text-primary cursor-pointer" />}
             >
               Categorias
             </DropdownMenuTrigger>
 
             <DropdownMenuContent className="w-80">
-              <DropdownMenuGroup>
-                <DropdownMenuItem className="p-2">Tecnologia</DropdownMenuItem>
-                <DropdownMenuItem className="p-2">Acessórios</DropdownMenuItem>
-                <DropdownMenuItem className="p-2">Roupas</DropdownMenuItem>
-                <DropdownMenuItem className="p-2">Calçados</DropdownMenuItem>
-                <DropdownMenuItem className="p-2">Casa e Decoração</DropdownMenuItem>
-                <DropdownMenuItem className="p-2">Beleza e Cuidados</DropdownMenuItem>
-                <DropdownMenuItem className="p-2">Esportes e Lazer</DropdownMenuItem>
-                <DropdownMenuItem className="p-2">Eletrodomésticos</DropdownMenuItem>
-                <DropdownMenuItem className="p-2">Brinquedos e Jogos</DropdownMenuItem>
-                <DropdownMenuItem className="p-2">Outros</DropdownMenuItem>
+              <DropdownMenuGroup className="*:p-3">
+                <DropdownMenuItem>Tecnologia</DropdownMenuItem>
+                <DropdownMenuItem>Acessórios</DropdownMenuItem>
+                <DropdownMenuItem>Roupas</DropdownMenuItem>
+                <DropdownMenuItem>Calçados</DropdownMenuItem>
+                <DropdownMenuItem>Casa e Decoração</DropdownMenuItem>
+                <DropdownMenuItem>Beleza e Cuidados</DropdownMenuItem>
+                <DropdownMenuItem>Esportes e Lazer</DropdownMenuItem>
+                <DropdownMenuItem>Eletrodomésticos</DropdownMenuItem>
+                <DropdownMenuItem>Brinquedos e Jogos</DropdownMenuItem>
+                <DropdownMenuItem>Outros</DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button variant="link" className="text-gray-700 hover:text-primary hover:bg-none">
+          <Button variant="link" className="text-gray-700 cursor-pointer hover:text-primary hover:bg-none">
             Ofertas
           </Button>
-          <Button variant="link" className="text-gray-700 hover:text-primary hover:bg-none">
+          <Button variant="link" className="text-gray-700 cursor-pointer hover:text-primary hover:bg-none">
             Vender
           </Button>
 
@@ -74,10 +73,10 @@ export function Header({
         <div className="flex items-center w-fit justify-end gap-2">
           {isLogado ?
             <>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="cursor-pointer">
                 <ShoppingCartIcon />
               </Button>
-              <Button variant="ghost" size= "icon">
+              <Button variant="ghost" size= "icon" className="cursor-pointer">
                 <BellIcon></BellIcon>
               </Button>
               
@@ -87,7 +86,7 @@ export function Header({
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="rounded-full"
+                      className="rounded-full cursor-pointer"
                     >
                       <Avatar>
                         <AvatarImage
@@ -101,7 +100,7 @@ export function Header({
                 />
 
                 <DropdownMenuContent align="end" className="min-w-50">
-                  <DropdownMenuGroup>
+                  <DropdownMenuGroup className="*:cursor-pointer">
                     <DropdownMenuItem>
                       <BadgeCheckIcon />
                       Conta
@@ -111,19 +110,22 @@ export function Header({
                       <CreditCardIcon />
                       Dados Financeiros
                     </DropdownMenuItem>
+                    
+                    <DropdownMenuSeparator />
+
+                    <DropdownMenuItem onClick={() => navigate("/")}>
+                      <LogOutIcon />
+                      Sair
+                    </DropdownMenuItem>
                   </DropdownMenuGroup>
 
-                  <DropdownMenuSeparator />
-
-                  <DropdownMenuItem onClick={() => navigate("/")}>
-                    <LogOutIcon />
-                    Sair
-                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </>
           :
-            <Button variant="outline"> Entrar </Button>
+            <Button variant="outline" onClick={() => navigate("/inicio")}>
+              Entrar
+            </Button>
           }
         </div>
       </div>
