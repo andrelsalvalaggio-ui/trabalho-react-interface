@@ -10,7 +10,7 @@ import { WavesBG } from "../../components/Wave";
 import Footer from "../../components/Footer";
 
 function PaginaInicial() {
-    const [isLogado, setIsLogado] = useState(() => {
+    const [isLogado] = useState(() => {
         const saved = localStorage.getItem('isLogado');
         return saved ? JSON.parse(saved) : null;
     });

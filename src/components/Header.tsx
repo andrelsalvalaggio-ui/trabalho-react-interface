@@ -7,10 +7,6 @@ import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, SearchIcon, Shopp
 import logo from "../assets/simpleShop.svg"
 import { useEffect, useState } from "react";
 
-interface HeaderProps {
-  isLogado: boolean
-}
-
 export function Header() {
   const navigate = useNavigate();
   const [isLogado, setIsLogado] = useState(() => {
