@@ -3,9 +3,9 @@ import { Header } from "../../components/Header";
 import { InicioCarousel } from "./components/InicioCarousel";
 import { ShopCard } from "../../components/ShopCard";
 import { ShopItems } from "./components/ShopItems";
-import fonegamer from "../../assets/fonegamer.png";
-import teclado from "../../assets/teclado.png";
-import fone from "../../assets/fonebluetooth.png"
+import fonegamer from "../../assets/fonegamer.webp";
+import teclado from "../../assets/teclado.webp";
+import fone from "../../assets/fonebluetooth.webp"
 import { WavesBG } from "../../components/Wave";
 import Footer from "../../components/Footer";
 

@@ -1,35 +1,16 @@
-import { useEffect, useState } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi, } from "../../../ui/carousel";
 import { ShopCard } from "../../../components/ShopCard";
-import fone from "../../../assets/fonebluetooth.png";
-import mouse from "../../../assets/mouse.png";
-import teclado from "../../../assets/teclado.png";
-import webcam from "../../../assets/webcam.png";
-import suporte from "../../../assets/suporte.png";
-import fonegamer from "../../../assets/fonegamer.png";
+import fone from "../../../assets/fonebluetooth.webp";
+import mouse from "../../../assets/mouse.webp";
+import teclado from "../../../assets/teclado.webp";
+import webcam from "../../../assets/webcam.webp";
+import suporte from "../../../assets/suporte.webp";
+import fonegamer from "../../../assets/fonegamer.webp";
 
 export function InicioCarousel() {
-    const [api, setApi] = useState<CarouselApi>();
-    const [current, setCurrent] = useState(0);
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        if (!api) {
-            return;
-        }
-
-        setCount(api.scrollSnapList().length);
-        setCurrent(api.selectedScrollSnap() + 1);
-
-        api.on("select", () => {
-            setCurrent(api.selectedScrollSnap() + 1);
-        });
-    }, [api]);
-
     return (
         <div className="relative">
             <Carousel
-                setApi={setApi}
                 opts={{
                     align: "start",
                     slidesToScroll: 1,
@@ -94,19 +75,6 @@ export function InicioCarousel() {
                 <CarouselPrevious size="icon-lg" />
                 <CarouselNext size="icon-lg" />
             </Carousel>
-
-            <div className="mt-6 flex justify-center gap-2">
-                {Array.from({ length: count }).map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => api?.scrollTo(index)}
-                        className={`h-2.5 w-2.5 rounded-full ${current === index + 1
-                                ? "bg-black"
-                                : "bg-gray-300"
-                            }`}
-                    />
-                ))}
-            </div>
         </div>
     )
 }

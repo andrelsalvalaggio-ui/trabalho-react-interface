@@ -3,9 +3,9 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { InputGroup, InputGroupAddon, InputGroupInput, } from "../ui/input-group";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useNavigate } from "react-router-dom";
-import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, SearchIcon, ShoppingCartIcon, } from "lucide-react";
-import logo from "../assets/simpleShop.svg"
+import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, MoonIcon, SearchIcon, ShoppingCartIcon, SunIcon, } from "lucide-react";
 import { useEffect, useState } from "react";
+import Logo from "./Logo";
 
 export function Header() {
   const navigate = useNavigate();
@@ -14,28 +14,36 @@ export function Header() {
       return saved ? JSON.parse(saved) : null;
   });
 
+  const [darkMode, setDarkMode] = useState(() => {
+      const saved = localStorage.getItem('darkMode');
+      return saved !== "false";
+  });
+
   useEffect(() => {
       localStorage.setItem('isLogado', JSON.stringify(isLogado));
   }, [isLogado]);
 
+  useEffect(() => {
+      localStorage.setItem('darkMode', JSON.stringify(darkMode));
+      document.documentElement.classList.toggle("dark", darkMode);
+      document.documentElement.classList.toggle("light", !darkMode);
+  }, [darkMode]);
+
   return (
-    <header className="flex justify-center bg-[#ffffff60] backdrop-blur-xs w-full border-b border-gray-200 z-100">
+    <header className="flex justify-center bg-accent backdrop-blur-xs w-full border-b border-border z-100">
       <div className="flex w-305 justify-between items-center gap-x-5 px-8 py-6">
         <div className="flex w-full items-center gap-4">
-          <img 
-            src={logo}
-            onClick={() => navigate("/inicio")} 
-            className="cursor-pointer w-25 -mt-4 -mb-5"
-          />
+
+          <Logo className="cursor-pointer w-25 -mt-4 -mb-5" />
 
           <DropdownMenu>
 
-            <Button onClick={() => navigate("/inicio")} variant="link" className="text-cyan-900 underline cursor-pointer hover:text-primary hover:bg-none">
+            <Button onClick={() => navigate("/inicio")} variant="link" className="text-magenta underline cursor-pointer hover:text-primary hover:bg-none">
               Início
             </Button>
 
             <DropdownMenuTrigger
-              render={<Button variant="link" className="text-gray-700 hover:text-primary cursor-pointer" />}
+              render={<Button variant="link" className="text-secondary-foreground hover:text-primary cursor-pointer" />}
             >
               Categorias
             </DropdownMenuTrigger>
@@ -56,10 +64,10 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button variant="link" className="text-gray-700 cursor-pointer hover:text-primary hover:bg-none">
+          <Button variant="link" className="text-secondary-foreground cursor-pointer hover:text-primary hover:bg-none">
             Ofertas
           </Button>
-          <Button variant="link" className="text-gray-700 cursor-pointer hover:text-primary hover:bg-none">
+          <Button variant="link" className="text-secondary-foreground cursor-pointer hover:text-primary hover:bg-none">
             Vender
           </Button>
 
@@ -77,10 +85,10 @@ export function Header() {
         <div className="flex items-center w-fit justify-end gap-2">
           {isLogado ?
             <>
-              <Button variant="ghost" size="icon" className="cursor-pointer">
+              <Button variant="ghost" size="icon" className="cursor-pointer" aria-label="Carrinho">
                 <ShoppingCartIcon />
               </Button>
-              <Button variant="ghost" size= "icon" className="cursor-pointer">
+              <Button variant="ghost" size= "icon" className="cursor-pointer" aria-label="Notificações">
                 <BellIcon></BellIcon>
               </Button>
               
@@ -90,6 +98,7 @@ export function Header() {
                     <Button
                       variant="ghost"
                       size="icon"
+                      aria-label="Usuário"
                       className="rounded-full cursor-pointer"
                     >
                       <Avatar>
@@ -114,7 +123,23 @@ export function Header() {
                       <CreditCardIcon />
                       Dados Financeiros
                     </DropdownMenuItem>
-                    
+
+                    <DropdownMenuItem onClick={() =>
+                      setDarkMode(!darkMode)
+                    }>
+                      {darkMode == true ?
+                        <>
+                          <SunIcon />
+                          <span>Modo Claro</span>
+                        </>
+                      :
+                        <>
+                          <MoonIcon />
+                          <span>Modo Escuro</span>
+                        </>
+                      }
+                    </DropdownMenuItem>
+
                     <DropdownMenuSeparator />
 
                     <DropdownMenuItem onClick={() => setIsLogado(false)}>

@@ -24,10 +24,10 @@ export function ShopCard({
   discount,
 }: ShopCardProps) {
   return (
-    <Card className={`cursor-pointer bg-[#ffffff60] backdrop-blur-xs relative w-full h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${className}`}>
+    <Card className={`cursor-pointer bg-card relative w-full h-full transition-all duration-300 hover:shadow-hardware-hover hover:-translate-y-1 ${className}`}>
 
       {discount && (
-        <span className="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-3 py-1 rounded-md">
+        <span className="absolute top-3 right-3 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-md">
           {discount}
         </span>
       )}
@@ -47,12 +47,12 @@ export function ShopCard({
 
       <CardFooter className="flex flex-col items-start gap-1">
         {oldPrice && (
-          <p className="text-sm text-gray-500 line-through">
+          <p className="text-sm text-muted-foreground line-through">
             R$ {oldPrice}
           </p>
         )}
 
-        <p className="font-semibold text-cyan-800 text-lg">
+        <p className="font-semibold text-card-foreground text-lg">
           R$ {price}
         </p>
       </CardFooter>

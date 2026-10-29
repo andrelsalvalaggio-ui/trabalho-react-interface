@@ -1,5 +1,5 @@
 import { ShopCard } from "../../../components/ShopCard";
-import mousegamer from "../../../assets/mousegamer.png";
+import mousegamer from "../../../assets/mousegamer.webp";
 import headset from "../../../assets/headset.webp";
 import monitor from "../../../assets/monitor.webp";
 import controle from "../../../assets/controle.webp";

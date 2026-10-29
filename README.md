@@ -11,3 +11,10 @@ https://ui.shadcn.com/docs
 
 RECOMENDADISSIMO:
 para usar o tailwind css direito baixem a extensão do vs code Tailwind CSS IntelliSense
+
+## PARA TESTAR MÉTRICAS DO LIGHTHOUSE
+
+npm run build
+npm run preview
+
+assim ele builda a página primeiro
