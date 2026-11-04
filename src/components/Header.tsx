@@ -35,10 +35,10 @@ export function Header() {
               Início
             </MenuLink>
 
-            <DropdownMenuTrigger
-              render={<Button variant="link" className="text-foreground hover:text-primary cursor-pointer" />}
-            >
-              Categorias
+            <DropdownMenuTrigger>
+              <MenuLink>
+                Categorias
+              </MenuLink>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent className="w-80">
@@ -57,12 +57,12 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button variant="link" className="text-foreground cursor-pointer hover:text-primary hover:bg-none">
-            Ofertas
-          </Button>
-          <Button variant="link" className="text-foreground cursor-pointer hover:text-primary hover:bg-none">
-            Vender
-          </Button>
+          <MenuLink path="/ofertas">
+              Ofertas
+          </MenuLink>
+          <MenuLink path="/vender">
+              Vender
+          </MenuLink>
 
         </div>
 
