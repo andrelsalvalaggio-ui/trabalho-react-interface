@@ -1,21 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import logoDark from "../assets/simpleShopDark.svg";
 import logoWhite from "../assets/simpleShopWhite.svg";
-import { useEffect, useState } from "react";
+import { useTheme } from "../contexts/ThemeContext";
 
 export default function Logo({...props}: React.ComponentProps<"img">) {
     const navigate = useNavigate();
-
-    const [darkMode] = useState(() => {
-        const saved = localStorage.getItem('darkMode');
-        return saved !== "false";
-    });
-    
-    useEffect(() => {
-        localStorage.setItem('darkMode', JSON.stringify(darkMode));
-        document.documentElement.classList.toggle("dark", darkMode);
-        document.documentElement.classList.toggle("light", !darkMode);
-    }, [darkMode]);
+    const { darkMode } = useTheme();
 
     return (
         <img

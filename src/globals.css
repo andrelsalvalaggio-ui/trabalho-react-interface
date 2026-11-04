@@ -260,10 +260,12 @@ header {
   box-shadow: none;
   transform: none;
   transition: border-color 180ms ease, box-shadow 180ms ease;
+  transition: all;
+  
+  transition-duration: 300ms;
 }
 
 [data-slot="card"]:hover {
-  border-color: var(--primary-container);
   box-shadow: 0 0 24px -4px rgb(139 47 201 / 45%);
 }
 

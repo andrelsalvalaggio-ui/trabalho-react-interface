@@ -6,28 +6,22 @@ import { useNavigate } from "react-router-dom";
 import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, MoonIcon, SearchIcon, ShoppingCartIcon, SunIcon, } from "lucide-react";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
+import { MenuLink } from "./MenuLink";
+import { useTheme } from "../contexts/ThemeContext";
 
 export function Header() {
   const navigate = useNavigate();
+
+  const { darkMode, toggleDarkMode } = useTheme();
+
   const [isLogado, setIsLogado] = useState(() => {
       const saved = localStorage.getItem('isLogado');
       return saved ? JSON.parse(saved) : null;
   });
 
-  const [darkMode, setDarkMode] = useState(() => {
-      const saved = localStorage.getItem('darkMode');
-      return saved !== "false";
-  });
-
   useEffect(() => {
       localStorage.setItem('isLogado', JSON.stringify(isLogado));
   }, [isLogado]);
-
-  useEffect(() => {
-      localStorage.setItem('darkMode', JSON.stringify(darkMode));
-      document.documentElement.classList.toggle("dark", darkMode);
-      document.documentElement.classList.toggle("light", !darkMode);
-  }, [darkMode]);
 
   return (
     <header className="flex justify-center bg-accent backdrop-blur-xs w-full border-b border-border z-100">
@@ -37,13 +31,12 @@ export function Header() {
           <Logo className="cursor-pointer w-25 -mt-4 -mb-5" />
 
           <DropdownMenu>
-
-            <Button onClick={() => navigate("/inicio")} variant="link" className="text-magenta underline cursor-pointer hover:text-primary hover:bg-none">
+            <MenuLink path="/inicio">
               Início
-            </Button>
+            </MenuLink>
 
             <DropdownMenuTrigger
-              render={<Button variant="link" className="text-secondary-foreground hover:text-primary cursor-pointer" />}
+              render={<Button variant="link" className="text-foreground hover:text-primary cursor-pointer" />}
             >
               Categorias
             </DropdownMenuTrigger>
@@ -64,10 +57,10 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button variant="link" className="text-secondary-foreground cursor-pointer hover:text-primary hover:bg-none">
+          <Button variant="link" className="text-foreground cursor-pointer hover:text-primary hover:bg-none">
             Ofertas
           </Button>
-          <Button variant="link" className="text-secondary-foreground cursor-pointer hover:text-primary hover:bg-none">
+          <Button variant="link" className="text-foreground cursor-pointer hover:text-primary hover:bg-none">
             Vender
           </Button>
 
@@ -125,7 +118,7 @@ export function Header() {
                     </DropdownMenuItem>
 
                     <DropdownMenuItem onClick={() =>
-                      setDarkMode(!darkMode)
+                      toggleDarkMode()
                     }>
                       {darkMode == true ?
                         <>

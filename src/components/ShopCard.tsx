@@ -24,7 +24,7 @@ export function ShopCard({
   discount,
 }: ShopCardProps) {
   return (
-    <Card className={`cursor-pointer bg-card relative w-full h-full transition-all duration-300 hover:shadow-hardware-hover hover:-translate-y-1 ${className}`}>
+    <Card className={`cursor-pointer bg-card relative w-full h-full transition-all duration-300 hover:-translate-y-1 ${className}`}>
 
       {discount && (
         <span className="absolute top-3 right-3 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-md">
