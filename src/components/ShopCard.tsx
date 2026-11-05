@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 import {
   Card, CardContent, CardDescription,
   CardFooter, CardHeader, CardTitle
@@ -23,8 +24,27 @@ export function ShopCard({
   oldPrice,
   discount,
 }: ShopCardProps) {
+  const navigate = useNavigate();
+  function handleClick() {
+    const product = {
+      title,
+      description,
+      price,
+      image,
+      oldPrice,
+      discount,
+    };
+
+    localStorage.setItem("selectedProduct", JSON.stringify(product));
+
+    navigate("/produto");
+  }
+
   return (
-    <Card className={`cursor-pointer bg-card relative w-full h-full transition-all duration-300 hover:shadow-hardware-hover hover:-translate-y-1 ${className}`}>
+    <Card id="shop-card" onClick={handleClick}
+      className={`cursor-pointer bg-card relative w-full h-full
+      transition-all duration-300 hover:shadow-[0_0_24px_-4px_rgb(139,47,201,0.45)] hover:-translate-y-1 ${className}`}
+    >
 
       {discount && (
         <span className="absolute top-3 right-3 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-md">

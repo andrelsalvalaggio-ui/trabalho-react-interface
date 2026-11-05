@@ -257,16 +257,11 @@ header {
 [data-slot="card"] {
   border: 1px solid var(--border);
   border-radius: 0.5rem;
-  box-shadow: none;
   transform: none;
   transition: border-color 180ms ease, box-shadow 180ms ease;
   transition: all;
   
   transition-duration: 300ms;
-}
-
-[data-slot="card"]:hover {
-  box-shadow: 0 0 24px -4px rgb(139 47 201 / 45%);
 }
 
 [data-slot="input-group"] {
