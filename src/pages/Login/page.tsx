@@ -37,12 +37,12 @@ function Login() {
   const navigate = useNavigate();
 
   const [isLogado, setIsLogado] = useState(() => {
-      const saved = localStorage.getItem('isLogado');
-      return saved ? JSON.parse(saved) : null;
+    const saved = localStorage.getItem('isLogado');
+    return saved ? JSON.parse(saved) : null;
   });
 
   useEffect(() => {
-      localStorage.setItem('isLogado', JSON.stringify(isLogado));
+    localStorage.setItem('isLogado', JSON.stringify(isLogado));
   }, [isLogado]);
 
   function handleLogin(event: FormEvent<HTMLFormElement>) {
@@ -58,7 +58,7 @@ function Login() {
       <div className="flex h-[80vh] w-full max-h-screen items-center justify-center overflow-hidden">
 
         <div className={`fixed w-[2250px] 2xl:w-[120%] opacity-50 top-0 -z-1`}>
-            <WavesBG/>
+          <WavesBG />
         </div>
 
         <Card className="w-120">
@@ -96,13 +96,6 @@ function Login() {
                     <Label htmlFor="password-spacing">
                       Senha
                     </Label>
-
-                    <a
-                      href="#"
-                      className="ml-auto inline-block text-primary text-sm underline-offset-4"
-                    >
-                      Dificuldade no acesso?
-                    </a>
                   </div>
 
                   <div className="relative">
@@ -145,6 +138,12 @@ function Login() {
                   >
                     Lembrar senha
                   </Label>
+                  <a
+                    href="#"
+                    className="ml-auto text-primary text-sm underline-offset-4 hover:underline"
+                  >
+                    Dificuldade no acesso?
+                  </a>
                 </div>
 
               </div>
