@@ -1,12 +1,13 @@
-import {BadgeCheck,PackageCheck, ShieldCheck, ShoppingCart, Star, StarIcon, Truck } from "lucide-react";
+import { BadgeCheck, PackageCheck, ShieldCheck, ShoppingCart, Star, StarIcon, Truck } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Header } from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Button } from "../../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import headset from "../../assets/headset.webp";
-import { useEffect, useState } from "react";
 import { ProductDetail } from "./components/ProductDetails";
+import { useFavorites } from "../../contexts/FavoritesContext";
 
 interface Product {
   title: string;
@@ -17,37 +18,33 @@ interface Product {
   discount?: string;
 }
 
-export default function Produto() {
-  const [favoritado, setFavorito] = useState(() => {
-      const saved = localStorage.getItem('favoritado');
-      return saved ? JSON.parse(saved) : null;
-  });
+const defaultProduct: Product = {
+  title: "Headset Gamer Pulse X",
+  description:
+    "Imersão e conforto para acompanhar cada partida. Som potente, microfone ajustável e conexão simples para o seu setup.",
+  price: "119,90",
+  image: headset,
+  oldPrice: "159,90",
+  discount: "25% OFF",
+};
 
-  useEffect(() => {
-      localStorage.setItem('isLogado', JSON.stringify(favoritado));
-  }, [favoritado]);
-
-  const [product, setProduct] = useState<Product | null>(null);
-
-  useEffect(() => {
-    const savedProduct = localStorage.getItem("selectedProduct");
-
-    if (savedProduct) {
-      setProduct(JSON.parse(savedProduct));
-    }
-  }, []);
-
-  if (!product) {
-    setProduct({
-      title: "Headset Gamer Pulse X",
-      description: "Imersão e conforto para acompanhar cada partida. Som potente, microfone ajustável e conexão simples para o seu setup.",
-      price: "119,90",
-      image: headset,
-      oldPrice: "159,90",
-      discount: "25% OFF"
-    });
+function loadProduct(): Product {
+  try {
+    const saved = localStorage.getItem("selectedProduct");
+    return saved ? JSON.parse(saved) : defaultProduct;
+  } catch {
+    return defaultProduct;
   }
-  
+}
+
+export default function Produto() {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const [product] = useState<Product>(loadProduct);
+
+  // Se seus produtos tiverem um id real, use-o aqui no lugar do título
+  const productId = product.title;
+  const favorito = isFavorite(productId);
+
   return (
     <>
       <Header />
@@ -58,7 +55,7 @@ export default function Produto() {
             Início
           </Link>
           <span className="mx-2">/</span>
-          <span className="text-foreground">{product?.title}</span>
+          <span className="text-foreground">{product.title}</span>
         </nav>
 
         <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
@@ -67,20 +64,15 @@ export default function Produto() {
               Mais vendido
             </span>
             <img
-              src={product?.image || headset}
-              alt={product?.title}
-
+              src={product.image || headset}
+              alt={product.title}
               className="max-h-105 w-full object-contain"
             />
           </div>
 
           <div className="flex flex-col">
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              {product?.title}
-            </h1>
-            <p className="mt-3 text-muted-foreground">
-              {product?.description}
-            </p>
+            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{product.title}</h1>
+            <p className="mt-3 text-muted-foreground">{product.description}</p>
 
             <div className="mt-5 flex items-center gap-2">
               <span className="flex items-center gap-0.5 text-primary" aria-label="5 de 5 estrelas">
@@ -93,23 +85,11 @@ export default function Produto() {
             </div>
 
             <div className="mt-7 border-y border-border py-6">
-              <p className="text-sm text-muted-foreground line-through">
-                {product?.oldPrice && (
-                  <span className=" text-sm text-muted-foreground line-through">
-                    R$ {product.oldPrice}
-                  </span>
-                )}
-              </p>
-              <p className="mt-1 text-4xl font-bold tracking-tight">
-                {product?.price && (
-                  <span className=" text-4xl font-bold tracking-tight">
-                    R$ {product.price}
-                  </span>
-                )}
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                ou 3x de R$ 39,97 sem juros
-              </p>
+              {product.oldPrice && (
+                <p className="text-sm text-muted-foreground line-through">R$ {product.oldPrice}</p>
+              )}
+              <p className="mt-1 text-4xl font-bold tracking-tight">R$ {product.price}</p>
+              <p className="mt-2 text-sm text-muted-foreground">ou 3x de R$ 39,97 sem juros</p>
               <p className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary">
                 <BadgeCheck className="size-4" aria-hidden="true" />
                 25% OFF por tempo limitado
@@ -117,25 +97,27 @@ export default function Produto() {
             </div>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <Button size="lg" className="h-11 w-full hover:bg-on-primary-container transition-all duration-300">
+              <Button size="lg" className="h-11 w-full transition-all duration-300 hover:bg-on-primary-container">
                 <ShoppingCart aria-hidden="true" />
                 Adicionar ao carrinho
               </Button>
-              <Button onClick={() => setFavorito(!favoritado)} variant="outline" size="lg" 
-                className={`h-11 w-full`}>
-                
-                {favoritado ? 
-                <>
-                  <StarIcon aria-hidden="true" />
-                  Adicionar aos favoritos
-                </>
-                :  
-                <>
-                  <StarIcon fill="#fff" />
-                  Favorito
-                </>
+
+              <Button
+                onClick={() =>
+                  toggleFavorite({
+                    id: productId,
+                    title: product.title,
+                    price: product.price,
+                    image: product.image,
+                  })
                 }
-                
+                variant="outline"
+                size="lg"
+                className="h-11 w-full"
+                aria-pressed={favorito}
+              >
+                <StarIcon aria-hidden="true" className={favorito ? "fill-current text-primary" : ""} />
+                {favorito ? "Remover dos favoritos" : "Adicionar aos favoritos"}
               </Button>
             </div>
 

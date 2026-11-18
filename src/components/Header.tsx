@@ -3,12 +3,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { InputGroup, InputGroupAddon, InputGroupInput, } from "../ui/input-group";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useNavigate } from "react-router-dom";
-import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, MoonIcon, SearchIcon, ShoppingCartIcon, StarIcon, SunIcon, } from "lucide-react";
+import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, MoonIcon, SearchIcon, ShoppingCartIcon, SunIcon, } from "lucide-react";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { MenuLink } from "./MenuLink";
 import { useTheme } from "../contexts/ThemeContext";
-import {Popover,PopoverContent,PopoverTrigger,} from "../ui/popover";
+import { FavoritesPopover } from "../ui/FavoritesPopover";
 
 export function Header() {
   const navigate = useNavigate();
@@ -79,6 +79,7 @@ export function Header() {
         <div className="flex items-center w-fit justify-end gap-2">
           {isLogado ?
             <>
+              <FavoritesPopover />
               <Button variant="ghost" size="icon" className="cursor-pointer" aria-label="Carrinho">
                 <ShoppingCartIcon />
               </Button>
@@ -133,25 +134,6 @@ export function Header() {
                         </>
                       }
                     </DropdownMenuItem>
-
-                    <Popover>
-                      <PopoverTrigger className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm cursor-pointer hover:bg-accent">
-                        <StarIcon className="h-4 w-4" />
-                        Favoritos
-                      </PopoverTrigger>
-
-                      <PopoverContent align="end" className="w-80">
-                        <div className="flex flex-col gap-3">
-                          <h3 className="font-semibold">Meus favoritos</h3>
-
-                          {/* Produtos favoritados aqui */}
-
-                          <p className="text-sm text-muted-foreground">
-                            Você ainda não possui favoritos.
-                          </p>
-                        </div>
-                      </PopoverContent>
-                    </Popover>
 
                     <DropdownMenuSeparator />
 
