@@ -1,4 +1,4 @@
-import {BadgeCheck, Heart, PackageCheck, ShieldCheck, ShoppingCart, Star, Truck } from "lucide-react";
+import {BadgeCheck,PackageCheck, ShieldCheck, ShoppingCart, Star, StarIcon, Truck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Header } from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -126,12 +126,12 @@ export default function Produto() {
                 
                 {favoritado ? 
                 <>
-                  <Heart aria-hidden="true" />
+                  <StarIcon aria-hidden="true" />
                   Adicionar aos favoritos
                 </>
                 :  
                 <>
-                  <Heart fill="#fff" />
+                  <StarIcon fill="#fff" />
                   Favorito
                 </>
                 }
