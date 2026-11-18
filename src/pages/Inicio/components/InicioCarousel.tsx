@@ -27,6 +27,16 @@ export function InicioCarousel() {
                             image={fone}
                             price="89,90"
                             avaliacao={4.7}
+                            details={{
+                                Titulo1: "Conexão",
+                                Desc1: "Bluetooth 5.3",
+                                Titulo2: "Bateria",
+                                Desc2: "Até 24 horas com o estojo",
+                                Titulo3: "Resistência",
+                                Desc3: "Proteção contra respingos IPX4",
+                                Titulo4: "Estojo",
+                                Desc4: "Carregamento portátil com indicador LED",
+                            }}
                         />
                     </CarouselItem>
 
@@ -38,6 +48,16 @@ export function InicioCarousel() {
                             image={mouse}
                             price="59,90"
                             avaliacao={4.5}
+                            details={{
+                                Titulo1: "Conexão",
+                                Desc1: "Receptor USB sem fio",
+                                Titulo2: "Alcance",
+                                Desc2: "Até 10 metros",
+                                Titulo3: "Formato",
+                                Desc3: "Design ergonômico ambidestro",
+                                Titulo4: "Alimentação",
+                                Desc4: "Uma pilha com longa duração",
+                            }}
                         />
                     </CarouselItem>
 
@@ -49,6 +69,16 @@ export function InicioCarousel() {
                             image={teclado}
                             price="189,90"
                             avaliacao={4.8}
+                            details={{
+                                Titulo1: "Formato",
+                                Desc1: "Compacto, com 87 teclas",
+                                Titulo2: "Iluminação",
+                                Desc2: "RGB com efeitos personalizáveis",
+                                Titulo3: "Conexão",
+                                Desc3: "USB com cabo reforçado",
+                                Titulo4: "Switches",
+                                Desc4: "Mecânicos com resposta tátil",
+                            }}
                         />
                     </CarouselItem>
 
@@ -60,6 +90,16 @@ export function InicioCarousel() {
                             image={webcam}
                             price="119,90"
                             avaliacao={4.6}
+                            details={{
+                                Titulo1: "Resolução",
+                                Desc1: "Full HD 1080p",
+                                Titulo2: "Microfone",
+                                Desc2: "Integrado com captação estéreo",
+                                Titulo3: "Instalação",
+                                Desc3: "Clipe ajustável e conexão USB",
+                                Titulo4: "Privacidade",
+                                Desc4: "Tampa deslizante para a lente",
+                            }}
                         />
                     </CarouselItem>
 
@@ -71,6 +111,16 @@ export function InicioCarousel() {
                             image={suporte}
                             price="79,90"
                             avaliacao={4.4}
+                            details={{
+                                Titulo1: "Material",
+                                Desc1: "Alumínio leve e resistente",
+                                Titulo2: "Ajuste",
+                                Desc2: "Altura e inclinação reguláveis",
+                                Titulo3: "Compatibilidade",
+                                Desc3: "Notebooks de até 15,6 polegadas",
+                                Titulo4: "Ventilação",
+                                Desc4: "Design aberto para ajudar na dissipação de calor",
+                            }}
                         />
                     </CarouselItem>
 
@@ -82,6 +132,16 @@ export function InicioCarousel() {
                             image={fonegamer}
                             price="79,90"
                             avaliacao={4.9}
+                            details={{
+                                Titulo1: "Áudio",
+                                Desc1: "Som estéreo com graves reforçados",
+                                Titulo2: "Microfone",
+                                Desc2: "Articulado com redução de ruído",
+                                Titulo3: "Conforto",
+                                Desc3: "Almofadas macias e ajustáveis",
+                                Titulo4: "Compatibilidade",
+                                Desc4: "PC, consoles e dispositivos móveis",
+                            }}
                         />
                     </CarouselItem>
                 </CarouselContent>

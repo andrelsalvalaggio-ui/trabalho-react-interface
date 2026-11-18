@@ -1,26 +1,18 @@
 import { BadgeCheck, PackageCheck, ShieldCheck, ShoppingCart, Star, StarIcon, Truck } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Button } from "../../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import headset from "../../assets/headset.webp";
 import { ProductDetail } from "./components/ProductDetails";
-import { useFavorites } from "../../contexts/FavoritesContext";
+import { useCart } from "../../contexts/CartContext";
+import { useTheme } from "../../contexts/ThemeContext";
+import type { ShopCardProps } from "../../components/ShopCard";
 
-interface Product {
-  marca?: string;
-  title: string;
-  description: string;
-  price: string;
-  image: string;
-  avaliacao?: number;
-  oldPrice?: string;
-  discount?: string;
-}
 
-const defaultProduct: Product = {
+const defaultProduct: ShopCardProps = {
   marca: "HyperX",
   title: "Headset Gamer Pulse X",
   description:
@@ -32,7 +24,7 @@ const defaultProduct: Product = {
   discount: "25% OFF",
 };
 
-function loadProduct(): Product {
+function loadProduct(): ShopCardProps {
   try {
     const saved = localStorage.getItem("selectedProduct");
     return saved ? JSON.parse(saved) : defaultProduct;
@@ -42,12 +34,21 @@ function loadProduct(): Product {
 }
 
 export default function Produto() {
-  const { isFavorite, toggleFavorite } = useFavorites();
-  const [product] = useState<Product>(loadProduct);
+  const { isCart, toggleCart } = useCart();
+  const [product] = useState<ShopCardProps>(loadProduct);
+  const { darkMode } = useTheme();
 
-  // Se seus produtos tiverem um id real, use-o aqui no lugar do título
   const productId = product.title;
-  const favorito = isFavorite(productId);
+  const cartItem = isCart(productId);
+
+  const [favoritado, setFavorito] = useState(() => {
+      const saved = localStorage.getItem('favoritado');
+      return saved ? JSON.parse(saved) : null;
+  });
+
+  useEffect(() => {
+      localStorage.setItem('isLogado', JSON.stringify(favoritado));
+  }, [favoritado]);
 
   return (
     <>
@@ -107,34 +108,40 @@ export default function Produto() {
               )}
               <p className="mt-1 text-4xl font-bold tracking-tight">R$ {product.price}</p>
               <p className="mt-2 text-sm text-muted-foreground">ou 3x de R$ 39,97 sem juros</p>
-              <p className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary">
-                <BadgeCheck className="size-4" aria-hidden="true" />
-                25% OFF por tempo limitado
-              </p>
+              {product.discount && (
+                <p className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary">
+                  <BadgeCheck className="size-4" aria-hidden="true" />
+                  {product.discount} por tempo limitado
+                </p>
+              )}
             </div>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <Button size="lg" className="h-11 w-full transition-all duration-300 hover:bg-on-primary-container">
-                <ShoppingCart aria-hidden="true" />
-                Adicionar ao carrinho
-              </Button>
-
-              <Button
+              <Button size="lg" className={`
+                  h-11 w-full transition-all duration-300
+                  ${cartItem ? " bg-background border border-primary text-primary " : ""}
+                  ${cartItem ? darkMode
+                    ? "hover:bg-card"
+                    : darkMode
+                      ? "hover:bg-on-primary-container"
+                      : "hover:bg-purple-100": ""}
+                `}
                 onClick={() =>
-                  toggleFavorite({
+                  toggleCart({
                     id: productId,
                     title: product.title,
                     price: product.price,
                     image: product.image,
                   })
                 }
-                variant="outline"
-                size="lg"
-                className="h-11 w-full"
-                aria-pressed={favorito}
               >
-                <StarIcon aria-hidden="true" className={favorito ? "fill-current text-primary" : ""} />
-                {favorito ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                <ShoppingCart aria-hidden="true" />
+                {cartItem ? "Remover do carrinho" : "Adicionar ao carrinho"}
+              </Button>
+
+              <Button onClick={() => setFavorito(!favoritado)} variant="outline" size="lg" className="h-11 w-full" aria-pressed={favoritado}>
+                <StarIcon aria-hidden="true" className={favoritado ? "fill-current text-primary" : ""} />
+                {favoritado ? "Remover dos favoritos" : "Adicionar aos favoritos"}
               </Button>
             </div>
 
@@ -160,12 +167,18 @@ export default function Produto() {
             <CardTitle className="text-xl">Detalhes do produto</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-x-12 gap-y-5 sm:grid-cols-2">
-            <ProductDetail titulo="Conexão" descricao="P2, cabo de 2 m" />
-            <ProductDetail titulo="Compatibilidade" descricao="50 mm" />
-            <ProductDetail titulo="Microfone" descricao="Ajustável com redução de ruído" />
-            <ProductDetail titulo="Peso" descricao="350 g" />
-            <ProductDetail titulo="Material" descricao="Plástico e espuma" />
-            <ProductDetail titulo="Garantia" descricao="12 meses" />
+            {product.details?.Titulo1 && product.details?.Desc1 && (
+              <ProductDetail titulo={product.details.Titulo1} descricao={product.details.Desc1} />
+            )}
+            {product.details?.Titulo2 && product.details?.Desc2 && (
+              <ProductDetail titulo={product.details.Titulo2} descricao={product.details.Desc2} />
+            )}
+            {product.details?.Titulo3 && product.details?.Desc3 && (
+              <ProductDetail titulo={product.details.Titulo3} descricao={product.details.Desc3} border={false} />
+            )}
+            {product.details?.Titulo4 && product.details?.Desc4 && (
+              <ProductDetail titulo={product.details.Titulo4} descricao={product.details.Desc4} border={false} />
+            )}
           </CardContent>
         </Card>
       </main>

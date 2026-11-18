@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { MenuLink } from "./MenuLink";
 import { useTheme } from "../contexts/ThemeContext";
-import { FavoritesPopover } from "../ui/FavoritesPopover";
+import { CartPopover } from "../ui/CartPopover";
 
 export function Header() {
   const navigate = useNavigate();
@@ -79,13 +79,14 @@ export function Header() {
         <div className="flex items-center w-fit justify-end gap-2">
           {isLogado ?
             <>
-              <FavoritesPopover />
-              <Button variant="ghost" size="icon" className="cursor-pointer" aria-label="Carrinho">
-                <ShoppingCartIcon />
+
+              <Button variant="ghost" size="icon" className="cursor-pointer bg-transparent" aria-label="Modo Escuro" onClick={() => toggleDarkMode()}>
+                { darkMode == true ? <SunIcon className="size-5" aria-hidden="true" /> : <MoonIcon className="size-4" aria-hidden="true" /> }
               </Button>
               <Button variant="ghost" size="icon" className="cursor-pointer" aria-label="Notificações">
                 <BellIcon></BellIcon>
               </Button>
+              <CartPopover />
 
               <DropdownMenu>
                 <DropdownMenuTrigger
@@ -117,22 +118,6 @@ export function Header() {
                     <DropdownMenuItem>
                       <CreditCardIcon />
                       Dados Financeiros
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem onClick={() =>
-                      toggleDarkMode()
-                    }>
-                      {darkMode == true ?
-                        <>
-                          <SunIcon />
-                          <span>Modo Claro</span>
-                        </>
-                        :
-                        <>
-                          <MoonIcon />
-                          <span>Modo Escuro</span>
-                        </>
-                      }
                     </DropdownMenuItem>
 
                     <DropdownMenuSeparator />

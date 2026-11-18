@@ -6,7 +6,7 @@ import {
   CardFooter, CardHeader, CardTitle
 } from "../ui/card";
 
-interface ShopCardProps {
+export interface ShopCardProps {
   marca?: string;
   title: string;
   description: string;
@@ -16,6 +16,16 @@ interface ShopCardProps {
   className?: string;
   oldPrice?: string;
   discount?: string;
+  details?: {
+    Titulo1?: string;
+    Desc1?: string;
+    Titulo2?: string;
+    Desc2?: string;
+    Titulo3?: string;
+    Desc3?: string;
+    Titulo4?: string;
+    Desc4?: string;
+  };
 }
 
 export function ShopCard({
@@ -28,7 +38,8 @@ export function ShopCard({
   className = "",
   oldPrice,
   discount,
-}: ShopCardProps) {
+  details,
+} : ShopCardProps) {
   const navigate = useNavigate();
 
   function handleClick() {
@@ -41,6 +52,7 @@ export function ShopCard({
       avaliacao,
       oldPrice,
       discount,
+      details
     };
 
     localStorage.setItem("selectedProduct", JSON.stringify(product));

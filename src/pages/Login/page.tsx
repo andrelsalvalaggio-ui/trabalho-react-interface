@@ -57,7 +57,7 @@ function Login() {
 
       <div className="flex h-[80vh] w-full max-h-screen items-center justify-center overflow-hidden">
 
-        <div className={`fixed w-[2250px] 2xl:w-[120%] opacity-50 top-0 -z-1`}>
+        <div className={`fixed w-[2850px] 2xl:w-[120%] opacity-50 top-0 -z-1`}>
           <WavesBG />
         </div>
 

@@ -62,6 +62,16 @@ function PaginaInicial() {
                             price="69,90"
                             discount="22% OFF"
                             avaliacao={4.7}
+                            details={{
+                                Titulo1: "Conexão",
+                                Desc1: "Bluetooth 5.3",
+                                Titulo2: "Bateria",
+                                Desc2: "Até 24 horas com o estojo",
+                                Titulo3: "Resistência",
+                                Desc3: "Proteção contra respingos IPX4",
+                                Titulo4: "Estojo",
+                                Desc4: "Carregamento portátil com indicador LED",
+                            }}
                         />
 
                         <ShopCard
@@ -74,6 +84,16 @@ function PaginaInicial() {
                             price="149,90"
                             discount="21% OFF"
                             avaliacao={4.8}
+                            details={{
+                                Titulo1: "Formato",
+                                Desc1: "Compacto, com 87 teclas",
+                                Titulo2: "Iluminação",
+                                Desc2: "RGB com efeitos personalizáveis",
+                                Titulo3: "Conexão",
+                                Desc3: "USB com cabo reforçado",
+                                Titulo4: "Switches",
+                                Desc4: "Mecânicos com resposta tátil",
+                            }}
                         />
 
                         <ShopCard
@@ -86,6 +106,16 @@ function PaginaInicial() {
                             price="119,90"
                             discount="25% OFF"
                             avaliacao={4.9}
+                            details={{
+                                Titulo1: "Áudio",
+                                Desc1: "Som estéreo com graves reforçados",
+                                Titulo2: "Microfone",
+                                Desc2: "Articulado com redução de ruído",
+                                Titulo3: "Conforto",
+                                Desc3: "Almofadas macias e ajustáveis",
+                                Titulo4: "Compatibilidade",
+                                Desc4: "PC, consoles e dispositivos móveis",
+                            }}
                         />
                     </div>
                 </section>
