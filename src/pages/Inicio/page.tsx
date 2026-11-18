@@ -42,48 +42,54 @@ function PaginaInicial() {
 
                 <div className={`absolute w-full opacity-50 top-240 -z-1 max-h-50`}
                 >
-                    <WavesBG/>
+                    <WavesBG />
                 </div>
+
 
                 <section className="w-full max-w-305 px-6 mt-16 mb-10">
                     <h2 className="mb-6 text-2xl font-bold">
-                    Ofertas do Dia
+                        Ofertas do Dia
                     </h2>
-
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <ShopCard
                             className="w-full!"
+                            marca="JBL"
                             title="Fone Bluetooth"
                             description="Fone sem fio com estojo de carregamento"
                             image={fone}
                             oldPrice="89,90"
                             price="69,90"
                             discount="22% OFF"
+                            avaliacao={4.7}
                         />
 
                         <ShopCard
                             className="w-full!"
+                            marca="Redragon"
                             title="Teclado Mecânico"
                             description="Teclado mecânico compacto RGB"
                             image={teclado}
                             oldPrice="189,90"
                             price="149,90"
                             discount="21% OFF"
+                            avaliacao={4.8}
                         />
 
                         <ShopCard
                             className="w-full!"
+                            marca="HyperX"
                             title="Headset Gamer"
                             description="Headset com microfone e som estéreo"
                             image={fonegamer}
                             oldPrice="159,90"
                             price="119,90"
                             discount="25% OFF"
+                            avaliacao={4.9}
                         />
                     </div>
-
                 </section>
+
 
             </main>
 

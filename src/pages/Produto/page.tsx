@@ -10,20 +10,24 @@ import { ProductDetail } from "./components/ProductDetails";
 import { useFavorites } from "../../contexts/FavoritesContext";
 
 interface Product {
+  marca?: string;
   title: string;
   description: string;
   price: string;
   image: string;
+  avaliacao?: number;
   oldPrice?: string;
   discount?: string;
 }
 
 const defaultProduct: Product = {
+  marca: "HyperX",
   title: "Headset Gamer Pulse X",
   description:
     "Imersão e conforto para acompanhar cada partida. Som potente, microfone ajustável e conexão simples para o seu setup.",
   price: "119,90",
   image: headset,
+  avaliacao: 4.8,
   oldPrice: "159,90",
   discount: "25% OFF",
 };
@@ -75,13 +79,26 @@ export default function Produto() {
             <p className="mt-3 text-muted-foreground">{product.description}</p>
 
             <div className="mt-5 flex items-center gap-2">
-              <span className="flex items-center gap-0.5 text-primary" aria-label="5 de 5 estrelas">
+              <span className="flex items-center gap-0.5 text-primary">
                 {Array.from({ length: 5 }, (_, index) => (
-                  <Star key={index} className="size-4 fill-current" aria-hidden="true" />
+                  <Star
+                    key={index}
+                    className={`size-4 ${index < Math.round(product.avaliacao ?? 0)
+                        ? "fill-current"
+                        : "opacity-30"
+                      }`}
+                    aria-hidden="true"
+                  />
                 ))}
               </span>
-              <span className="text-sm font-medium">4,8</span>
-              <span className="text-sm text-muted-foreground">(128 avaliações)</span>
+
+              <span className="text-sm font-medium">
+                {(product.avaliacao ?? 0).toFixed(1).replace(".", ",")}
+              </span>
+
+              <span className="text-sm text-muted-foreground">
+                (128 avaliações)
+              </span>
             </div>
 
             <div className="mt-7 border-y border-border py-6">
