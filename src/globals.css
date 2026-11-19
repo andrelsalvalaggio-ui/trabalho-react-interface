@@ -251,7 +251,7 @@ header {
 }
 
 .light header {
-  background-color: rgb(248 249 251 / 85%);
+  background-color: #FBFBFB;
 }
 
 [data-slot="card"] {
