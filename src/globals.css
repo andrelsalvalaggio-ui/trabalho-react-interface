@@ -88,10 +88,10 @@
   --surface-dim: #111317;
   --surface-bright: #37393e;
   --surface-container-lowest: #0c0e12;
-  --surface-container-low: #1a1c20;
-  --surface-container: #1e2024;
-  --surface-container-high: #282a2e;
-  --surface-container-highest: #333539;
+  --surface-container-low: #1b1e23;
+  --surface-container: #22262c;
+  --surface-container-high: #2a2f36;
+  --surface-container-highest: #343a42;
   --on-surface: #e2e2e8;
   --on-surface-variant: #d0c2d5;
   --inverse-surface: #e2e2e8;
@@ -128,18 +128,19 @@
   --on-tertiary-fixed: #001f26;
   --on-tertiary-fixed-variant: #004e5c;
   --background: #111317;
+  --header-tint: color-mix(in oklab, var(--primary-container) 70%, var(--background));
   --foreground: #e2e2e8;
-  --card: #1a1c20;
+  --card: #272b32;
   --card-foreground: #e2e2e8;
-  --popover: #1e2024;
+  --popover: #272b32;
   --popover-foreground: #e2e2e8;
-  --muted: #1a1c20;
+  --muted: #22262c;
   --muted-foreground: #d0c2d5;
-  --accent: #282a2e;
+  --accent: #30353d;
   --accent-foreground: #e2e2e8;
   --success: #4cd7f6;
   --warning: #fbabff;
-  --border: #4d4353;
+  --border: #3b414a;
   --outline: #998c9e;
   --outline-variant: #4d4353;
   --input: #282a2e;
@@ -165,7 +166,16 @@
 
 .light {
   color-scheme: light;
+  --surface: #F1F3F5;
+  --surface-dim: #E8EBEF;
+  --surface-bright: #FFFFFF;
+  --surface-container-lowest: #FFFFFF;
+  --surface-container-low: #F7F8FA;
+  --surface-container: #F1F3F5;
+  --surface-container-high: #E9ECF0;
+  --surface-container-highest: #E1E5EA;
   --background: #F1F3F5;
+  --header-tint: color-mix(in oklab, var(--primary) 30%, var(--background));
   --foreground: #17191F;
   --card: #FFFFFF;
   --card-foreground: #272A32;
@@ -215,6 +225,9 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    background-image: linear-gradient(to bottom, var(--header-tint), var(--background));
+    background-size: 100% 480px;
+    background-repeat: no-repeat;
     font-size: 15px;
     line-height: 1.6;
   }
@@ -246,12 +259,8 @@
 }
 
 header {
-  background-color: rgb(15 17 21 / 75%);
-  backdrop-filter: blur(16px);
-}
-
-.light header {
-  background-color: #FBFBFB;
+  background-color: transparent;
+  border-bottom-color: transparent;
 }
 
 [data-slot="card"] {

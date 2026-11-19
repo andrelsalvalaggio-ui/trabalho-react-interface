@@ -24,20 +24,24 @@ function PaginaInicial() {
             <Header />
 
             <main className="w-full flex flex-col items-center">
-                <section className="p-15 px-6 min-w-10 w-fit max-w-305">
+                <section className="w-full max-w-305 px-6 mt-12">
+                    <div className="rounded-2xl border border-border/70 bg-surface-container-low p-6 md:p-8">
                     <h2 className="mb-6 text-2xl font-bold">
                         Baseado nas suas atividades recentes
                     </h2>
 
                     <InicioCarousel />
+                    </div>
                 </section>
 
-                <section className="w-full max-w-305 px-6 mt-16 mb-10">
+                <section className="w-full max-w-305 px-6 mt-10">
+                    <div className="rounded-2xl border border-border/70 bg-surface-container-low p-6 md:p-8">
                     <h2 className="mb-6 text-2xl font-bold">
                         Produtos em destaque
                     </h2>
 
                     <ShopItems />
+                    </div>
                 </section>
 
                 <div className={`absolute w-full opacity-50 top-240 -z-1 max-h-50`}
@@ -46,7 +50,8 @@ function PaginaInicial() {
                 </div>
 
 
-                <section className="w-full max-w-305 px-6 mt-16 mb-10">
+                <section className="w-full max-w-305 px-6 mt-10 mb-14">
+                    <div className="rounded-2xl border border-border/70 bg-surface-container-low p-6 md:p-8">
                     <h2 className="mb-6 text-2xl font-bold">
                         Ofertas do Dia
                     </h2>
@@ -117,6 +122,7 @@ function PaginaInicial() {
                                 Desc4: "PC, consoles e dispositivos móveis",
                             }}
                         />
+                    </div>
                     </div>
                 </section>
 

@@ -27,9 +27,9 @@ export function Header() {
   return (
     <header className="flex justify-center bg-accent backdrop-blur-xs w-full border-b border-border z-100">
       <div className="flex w-305 justify-between items-center gap-x-5 px-8 py-6">
-        <div className="flex w-full items-center gap-4">
+        <div className="flex shrink-0 items-center gap-4">
 
-          <Logo className="cursor-pointer w-25 -mt-4 -mb-5" />
+          <Logo className="cursor-pointer h-9 w-auto shrink-0" />
 
           <DropdownMenu>
             <MenuLink path="/inicio">
@@ -67,7 +67,7 @@ export function Header() {
 
         </div>
 
-        <div className="flex w-full justify-center">
+        <div className="flex min-w-0 flex-1 justify-center">
           <InputGroup>
             <InputGroupInput placeholder="Buscar..." />
             <InputGroupAddon>
@@ -76,7 +76,7 @@ export function Header() {
           </InputGroup>
         </div>
 
-        <div className="flex items-center w-fit justify-end gap-2">
+        <div className="flex shrink-0 items-center w-fit justify-end gap-2">
           {isLogado ?
             <>
 
