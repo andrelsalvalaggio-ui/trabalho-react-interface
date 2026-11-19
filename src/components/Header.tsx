@@ -1,9 +1,9 @@
 import { Button } from "../ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger, } from "../ui/dropdown-menu";
-import { InputGroup, InputGroupAddon, InputGroupInput, } from "../ui/input-group";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "../ui/input-group";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useNavigate } from "react-router-dom";
-import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, MoonIcon, SearchIcon, ShoppingCartIcon, SunIcon, } from "lucide-react";
+import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, MoonIcon, SearchIcon, ShoppingCartIcon, SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { MenuLink } from "./MenuLink";
@@ -77,15 +77,25 @@ export function Header() {
         </div>
 
         <div className="flex items-center w-fit justify-end gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="cursor-pointer bg-transparent"
+            aria-label="Alternar tema"
+            onClick={toggleDarkMode}
+          >
+            {darkMode
+              ? <SunIcon className="size-5" aria-hidden="true" />
+              : <MoonIcon className="size-4" aria-hidden="true" />
+            }
+          </Button>
+
           {isLogado ?
             <>
-
-              <Button variant="ghost" size="icon" className="cursor-pointer bg-transparent" aria-label="Modo Escuro" onClick={() => toggleDarkMode()}>
-                { darkMode == true ? <SunIcon className="size-5" aria-hidden="true" /> : <MoonIcon className="size-4" aria-hidden="true" /> }
-              </Button>
               <Button variant="ghost" size="icon" className="cursor-pointer" aria-label="Notificações">
-                <BellIcon></BellIcon>
+                <BellIcon />
               </Button>
+
               <CartPopover />
 
               <DropdownMenu>
@@ -127,7 +137,6 @@ export function Header() {
                       Sair
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
-
                 </DropdownMenuContent>
               </DropdownMenu>
             </>
