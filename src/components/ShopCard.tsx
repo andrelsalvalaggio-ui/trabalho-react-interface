@@ -101,7 +101,7 @@ export function ShopCard({
         <img
           src={image}
           alt={title}
-          className="mx-auto h-56 w-56 object-contain"
+          className="mx-auto h-36 w-full max-w-36 object-contain sm:h-56 sm:w-56 sm:max-w-none"
         />
       </CardContent>
 

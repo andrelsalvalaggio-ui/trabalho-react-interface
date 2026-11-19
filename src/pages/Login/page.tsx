@@ -4,22 +4,16 @@ import { Button } from "../../ui/button.tsx";
 import { Label } from "../../ui/label.tsx";
 import { Input } from "../../ui/input.tsx";
 import { Header } from "../../components/Header.tsx";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../ui/card.tsx";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../ui/card.tsx";
 import PaginaInicial from "../Inicio/page.tsx";
 import Produto from "../Produto/page.tsx";
 import Vender from "../Vender/page.tsx";
 import google from "../../assets/google.svg";
 import { useEffect, useState, type FormEvent } from "react";
-import { Eye, EyeOff, Headphones, ShieldCheck, Sparkles, Truck } from "lucide-react";
+import { Eye, EyeOff, Headphones, ShieldCheck, Truck } from "lucide-react";
 import Pesquisa from "../Pesquisa/page.tsx";
+import Carrinho from "../Carrinho/page.tsx";
+import MeusAnuncios from "../MeusAnuncios/page.tsx";
 import Logo from "../../components/Logo.tsx";
 
 function App() {
@@ -31,6 +25,8 @@ function App() {
         <Route path="/produto" element={<Produto />} />
         <Route path="/vender" element={<Vender />} />
         <Route path="/pesquisa" element={<Pesquisa />} />
+        <Route path="/carrinho" element={<Carrinho />} />
+        <Route path="/meus-anuncios" element={<MeusAnuncios />} />
       </Routes>
     </BrowserRouter>
   );

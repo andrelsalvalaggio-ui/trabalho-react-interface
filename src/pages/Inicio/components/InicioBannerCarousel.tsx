@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "../../../ui/button";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-    type CarouselApi,
-} from "../../../ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "../../../ui/carousel";
 
 const banners = [
     {

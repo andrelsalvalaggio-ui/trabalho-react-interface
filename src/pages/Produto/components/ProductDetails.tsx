@@ -1,5 +1,3 @@
-import type { ReactHTMLElement } from "react";
-
 interface ProductDetailProps {
     titulo: string,
     descricao: string

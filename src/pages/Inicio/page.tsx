@@ -30,8 +30,8 @@ function PaginaInicial() {
                     <InicioBannerCarousel />
                 </section>
 
-                <section className="p-15 px-6 min-w-10 w-fit max-w-305">
-                    <h2 className="text-3xl font-bold sm:text-3xl mb-6">
+                <section className="w-full max-w-305 px-4 py-10 sm:px-6 sm:py-15">
+                    <h2 className="mb-6 text-2xl font-bold sm:text-3xl">
                         Baseado nas suas atividades recentes
                     </h2>
 
@@ -44,7 +44,7 @@ function PaginaInicial() {
                     ${darkMode ? "bg-[url(assets/stacked-waves-haikei.svg)]" : "bg-[url(assets/stacked-waves-haikei-white.svg)]"} 
                     bg-cover bg-no-repeat `}
                 >
-                    <div className="relative z-10 mx-auto w-full max-w-305 px-6 pt-20 pb-20">
+                    <div className="relative z-10 mx-auto w-full max-w-305 px-4 pt-12 pb-12 sm:px-6 sm:pt-20 sm:pb-20">
                         <div className="mb-8">
                             <h2 className={`text-3xl font-bold sm:text-3xl `}>
                                 Produtos em destaque
@@ -58,12 +58,12 @@ function PaginaInicial() {
                     </div>
                 </section>
 
-                <section id="ofertas-do-dia" className="w-full max-w-305 px-6 pt-16 pb-10">
-                    <h2 className="text-3xl font-bold sm:text-3xl mb-6">
+                <section id="ofertas-do-dia" className="w-full max-w-305 px-4 pt-12 pb-10 sm:px-6 sm:pt-16">
+                    <h2 className="mb-6 text-2xl font-bold sm:text-3xl">
                         Ofertas do Dia
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
                         <ShopCard
                             className="w-full!"
                             marca="JBL"

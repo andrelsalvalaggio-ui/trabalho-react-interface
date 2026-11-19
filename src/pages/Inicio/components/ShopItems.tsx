@@ -9,7 +9,7 @@ import { FlexCard } from "./FlexCard";
 
 export function ShopItems() {
     return (
-        <div className="flex row flex-wrap gap-y-5">
+        <div className="flex w-full flex-row flex-wrap gap-y-5">
             <FlexCard>
                 <ShopCard
                     marca="HyperX"

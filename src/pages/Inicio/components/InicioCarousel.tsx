@@ -16,10 +16,10 @@ export function InicioCarousel() {
                     align: "start",
                     slidesToScroll: 1,
                 }}
-                className="min-w-10 w-fit max-w-305"
+                className="w-full min-w-0 max-w-305"
             >
                 <CarouselContent className="flex -ml-6 p-2">
-                    <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
+                    <CarouselItem className="basis-[84%] pl-6 sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                         <ShopCard
                             marca="JBL"
                             title="Fone Bluetooth"
@@ -40,7 +40,7 @@ export function InicioCarousel() {
                         />
                     </CarouselItem>
 
-                    <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
+                    <CarouselItem className="basis-[84%] pl-6 sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                         <ShopCard
                             marca="Logitech"
                             title="Mouse Sem Fio"
@@ -61,7 +61,7 @@ export function InicioCarousel() {
                         />
                     </CarouselItem>
 
-                    <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
+                    <CarouselItem className="basis-[84%] pl-6 sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                         <ShopCard
                             marca="Redragon"
                             title="Teclado Mecânico"
@@ -82,7 +82,7 @@ export function InicioCarousel() {
                         />
                     </CarouselItem>
 
-                    <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
+                    <CarouselItem className="basis-[84%] pl-6 sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                         <ShopCard
                             marca="Logitech"
                             title="Webcam Full HD"
@@ -103,7 +103,7 @@ export function InicioCarousel() {
                         />
                     </CarouselItem>
 
-                    <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
+                    <CarouselItem className="basis-[84%] pl-6 sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                         <ShopCard
                             marca="Baseus"
                             title="Suporte para Notebook"
@@ -124,7 +124,7 @@ export function InicioCarousel() {
                         />
                     </CarouselItem>
 
-                    <CarouselItem className="basis-full sm:basis-1/2 pl-6 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
+                    <CarouselItem className="basis-[84%] pl-6 sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/4">
                         <ShopCard
                             marca="HyperX"
                             title="Headset Gamer"
@@ -146,8 +146,8 @@ export function InicioCarousel() {
                     </CarouselItem>
                 </CarouselContent>
 
-                <CarouselPrevious size="icon-lg" />
-                <CarouselNext size="icon-lg" />
+                <CarouselPrevious size="icon-lg" className="left-2 bg-background/85 shadow sm:-left-12" />
+                <CarouselNext size="icon-lg" className="right-2 bg-background/85 shadow sm:-right-12" />
             </Carousel>
         </div>
     );

@@ -1,11 +1,6 @@
 
 import { useState, useRef, type ChangeEvent, type FormEvent } from "react";
-import {
-    ImagePlus,
-    Package,
-    Trash2,
-    Plus,
-} from "lucide-react";
+import { ImagePlus, Package, Trash2, Plus } from "lucide-react";
 import { Header } from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Button } from "../../ui/button";
@@ -14,13 +9,7 @@ import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { Textarea } from "../../ui/textarea";
 import { useNavigate } from "react-router-dom";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "../../ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../../ui/dropdown-menu";
 
 interface Detail {
     titulo: string;
