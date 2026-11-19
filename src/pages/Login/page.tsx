@@ -15,6 +15,7 @@ import {
 } from "../../ui/card.tsx";
 import PaginaInicial from "../Inicio/page.tsx";
 import Produto from "../Produto/page.tsx";
+import Vender from "../Vender/page.tsx";
 import google from "../../assets/google.svg";
 import { useEffect, useState, type FormEvent } from "react";
 import { Eye, EyeOff } from "lucide-react";
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/inicio" element={<PaginaInicial />} />
         <Route path="/produto" element={<Produto />} />
+        <Route path="/vender" element={<Vender />} />
       </Routes>
     </BrowserRouter>
   );
