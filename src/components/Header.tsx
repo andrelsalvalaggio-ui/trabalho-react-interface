@@ -3,7 +3,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { InputGroup, InputGroupAddon, InputGroupInput } from "../ui/input-group";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useNavigate } from "react-router-dom";
-import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, MoonIcon, SearchIcon, ShoppingCartIcon, SunIcon } from "lucide-react";
+import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, MoonIcon, SearchIcon,SunIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { MenuLink } from "./MenuLink";
