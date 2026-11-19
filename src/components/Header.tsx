@@ -21,7 +21,7 @@ import {
   CreditCardIcon,
   LogOutIcon,
   MoonIcon,
-  SearchIcon,StarIcon,
+  SearchIcon, StarIcon,
   SunIcon,
 } from "lucide-react";
 import { useEffect, useState, type FormEvent } from "react";
@@ -93,9 +93,25 @@ export function Header() {
             Ofertas
           </MenuLink>
 
-          <MenuLink path="/vender">
-            Vender
-          </MenuLink>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <MenuLink>
+                Vender
+              </MenuLink>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent align="start" className="w-48">
+              <DropdownMenuGroup>
+                <DropdownMenuItem onClick={() => navigate("/vender")}>
+                  Anunciar produto
+                </DropdownMenuItem>
+
+                <DropdownMenuItem onClick={() => navigate("/meus-anuncios")}>
+                  Meus anúncios
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
         </div>
 
@@ -179,7 +195,7 @@ export function Header() {
                       <CreditCardIcon />
                       Dados Financeiros
                     </DropdownMenuItem>
-                    
+
                     <DropdownMenuSeparator />
 
                     <DropdownMenuItem onClick={() => setIsLogado(false)}>
