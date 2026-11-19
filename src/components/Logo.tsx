@@ -3,7 +3,7 @@ import logoDark from "../assets/simpleShopDark.svg";
 import logoWhite from "../assets/simpleShopWhite.svg";
 import { useTheme } from "../contexts/ThemeContext";
 
-export default function Logo({...props}: React.ComponentProps<"img">) {
+export default function Logo({link = true, ...props}: React.ComponentProps<"img"> & { link?: boolean }) {
     const navigate = useNavigate();
     const { darkMode } = useTheme();
 
@@ -11,7 +11,7 @@ export default function Logo({...props}: React.ComponentProps<"img">) {
         <img
             src={darkMode ? logoDark : logoWhite}
             alt="Logo SimpleShop"
-            onClick={() => navigate("/inicio")}
+            onClick={() => navigate(link ? "/inicio" : "/")}
             {...props}
         />
     )

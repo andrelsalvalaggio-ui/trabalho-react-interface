@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 export function Wave30() {
     return (
         <div>
@@ -19,12 +21,117 @@ export function Wave60() {
 export function WavesBG() {
     return (
         <>
-            <div className={`relative w-full -z-1`}>
+            <div className="relative w-full">
                 <Wave30 />
             </div>
-            <div className={`relative w-full -top-140 -z-1`}>
+            <div className="relative w-full -top-140">
                 <Wave60 />
             </div>
         </>
+    )
+}
+
+export function WaveTop() {
+    const maskId = useId().replaceAll(":", "");
+    const gradientId = `${maskId}-gradient`;
+    const glowId = `${maskId}-glow`;
+
+    return (
+        <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+        >
+            <svg
+                className="h-full w-full"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1440 1000"
+                preserveAspectRatio="none"
+            >
+                <defs>
+                    <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#27123a" />
+                        <stop offset="48%" stopColor="#512477" />
+                        <stop offset="100%" stopColor="#351444" />
+                    </linearGradient>
+                    <radialGradient id={glowId} cx="18%" cy="35%" r="62%">
+                        <stop offset="0%" stopColor="#b14deb" stopOpacity="0.4" />
+                        <stop offset="100%" stopColor="#b14deb" stopOpacity="0" />
+                    </radialGradient>
+                    <mask
+                        id={maskId}
+                        x="0"
+                        y="0"
+                        width="1440"
+                        height="1000"
+                        maskUnits="userSpaceOnUse"
+                        maskContentUnits="userSpaceOnUse"
+                    >
+                        <path
+                            fill="white"
+                            d="M0 112C80 126 160 148 240 158C320 168 400 171 480 154C640 121 800 106 960 110C1120 114 1280 126 1360 134L1440 142V1000H0Z"
+                        />
+                    </mask>
+                </defs>
+                <rect
+                    width="1440"
+                    height="1000"
+                    fill={`url(#${gradientId})`}
+                    mask={`url(#${maskId})`}
+                />
+                <rect
+                    width="1440"
+                    height="1000"
+                    fill={`url(#${glowId})`}
+                    mask={`url(#${maskId})`}
+                />
+            </svg>
+        </div>
+    )
+}
+
+export function WaveBottom() {
+    const maskId = useId().replaceAll(":", "");
+    const gradientId = `${maskId}-gradient`;
+
+    return (
+        <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+        >
+            <svg
+                className="h-full w-full"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1440 1000"
+                preserveAspectRatio="none"
+            >
+                <defs>
+                    <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#27123a" />
+                        <stop offset="48%" stopColor="#512477" />
+                        <stop offset="100%" stopColor="#351444" />
+                    </linearGradient>
+                    <mask
+                        id={maskId}
+                        x="0"
+                        y="0"
+                        width="1440"
+                        height="1000"
+                        maskUnits="userSpaceOnUse"
+                        maskContentUnits="userSpaceOnUse"
+                    >
+                        <path
+                            fill="white"
+                            d="M0 0H1440V830C1280 880 1120 910 960 900C800 890 650 850 480 815C320 780 160 790 0 850Z"
+                        />
+                    </mask>
+                </defs>
+                <rect
+                    width="1440"
+                    height="1000"
+                    fill={`url(#${gradientId})`}
+                    mask={`url(#${maskId})`}
+                />
+            </svg>
+        </div>
     )
 }

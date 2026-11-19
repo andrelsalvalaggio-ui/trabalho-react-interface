@@ -1,7 +1,7 @@
 import { ShoppingCartIcon, Trash2 } from "lucide-react";
 import { useCart } from "../contexts/CartContext";
-import { Button } from "./button";
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Button } from "../ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { useTheme } from "../contexts/ThemeContext";
 
 export function CartPopover() {
@@ -28,7 +28,7 @@ export function CartPopover() {
         )}
       </PopoverTrigger>
 
-      <PopoverContent align="end" className="w-80">
+      <PopoverContent align="end" className="w-80 border">
         <h2 className="mb-3 text-sm font-semibold">Meu Carrinho</h2>
 
         {cart.length === 0 ? (
@@ -62,7 +62,7 @@ export function CartPopover() {
           </ul>
         )}
         <Button size="lg" className={`
-            h-11 w-full mt-5 transition-all duration-300
+            h-11 w-full mt-5 transition-all duration-300 cursor-pointer
             ${darkMode
                 ? "hover:bg-on-primary-container"
                 : ""}

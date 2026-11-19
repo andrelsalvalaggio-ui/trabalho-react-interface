@@ -21,14 +21,14 @@ import {
   CreditCardIcon,
   LogOutIcon,
   MoonIcon,
-  SearchIcon,
+  SearchIcon,StarIcon,
   SunIcon,
 } from "lucide-react";
 import { useEffect, useState, type FormEvent } from "react";
 import Logo from "./Logo";
 import { MenuLink } from "./MenuLink";
 import { useTheme } from "../contexts/ThemeContext";
-import { CartPopover } from "../ui/CartPopover";
+import { CartPopover } from "./CartPopover";
 
 export function Header() {
   const navigate = useNavigate();
@@ -125,7 +125,7 @@ export function Header() {
             onClick={toggleDarkMode}
           >
             {darkMode
-              ? <SunIcon className="size-5" aria-hidden="true" />
+              ? <SunIcon className="size-4" aria-hidden="true" />
               : <MoonIcon className="size-4" aria-hidden="true" />
             }
           </Button>
@@ -166,6 +166,11 @@ export function Header() {
                 <DropdownMenuContent align="end" className="min-w-50">
                   <DropdownMenuGroup className="*:cursor-pointer">
                     <DropdownMenuItem>
+                      <StarIcon />
+                      Favoritos
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem>
                       <BadgeCheckIcon />
                       Conta
                     </DropdownMenuItem>
@@ -174,7 +179,7 @@ export function Header() {
                       <CreditCardIcon />
                       Dados Financeiros
                     </DropdownMenuItem>
-
+                    
                     <DropdownMenuSeparator />
 
                     <DropdownMenuItem onClick={() => setIsLogado(false)}>
