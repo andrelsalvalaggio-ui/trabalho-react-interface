@@ -63,10 +63,15 @@ export default function Vender() {
     function handleImagem(event: ChangeEvent<HTMLInputElement>) {
         const file = event.target.files?.[0];
 
-        if (file) {
-            setImagem(URL.createObjectURL(file));
-            setErros((atual) => ({ ...atual, imagem: false }));
-        }
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setImagem(reader.result as string);
+        };
+
+        reader.readAsDataURL(file);
     }
 
     function atualizarDetalhe(
@@ -92,6 +97,7 @@ export default function Vender() {
         setDetalhes((atual) => atual.filter((_, i) => i !== index));
     }
 
+
     function publicarProduto(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
@@ -111,9 +117,9 @@ export default function Vender() {
             // Identifica o primeiro campo inválido
             const primeiroCampoInvalido =
                 novosErros.imagem ? imagemRef :
-                novosErros.nome ? nomeRef :
-                novosErros.descricao ? descricaoRef :
-                precoRef;
+                    novosErros.nome ? nomeRef :
+                        novosErros.descricao ? descricaoRef :
+                            precoRef;
 
             // Rola até o campo com erro
             requestAnimationFrame(() => {
@@ -126,7 +132,9 @@ export default function Vender() {
             return;
         }
 
+        // Cria o produto
         const produto = {
+            id: crypto.randomUUID(),
             title: nome,
             marca,
             description: descricao,
@@ -137,6 +145,7 @@ export default function Vender() {
             discount: "",
             categoria,
             estoque: Number(estoque),
+            createdAt: new Date().toISOString(),
             details: {
                 Titulo1: detalhes[0]?.titulo,
                 Desc1: detalhes[0]?.descricao,
@@ -149,11 +158,30 @@ export default function Vender() {
             },
         };
 
-        localStorage.setItem("selectedProduct", JSON.stringify(produto));
-        localStorage.setItem("meuAnuncio", JSON.stringify(produto));
+        try {
+            // Recupera os anúncios já cadastrados
+            const anunciosSalvos = JSON.parse(
+                localStorage.getItem("anuncios") || "[]"
+            );
 
-        navigate("/produto");
+            // Adiciona o novo produto sem apagar os anteriores
+            const novosAnuncios = [...anunciosSalvos, produto];
+
+            // Salva a lista atualizada
+            localStorage.setItem("anuncios", JSON.stringify(novosAnuncios));
+
+            // Mantém compatibilidade com a página atual do produto
+            localStorage.setItem("selectedProduct", JSON.stringify(produto));
+            localStorage.setItem("meuAnuncio", JSON.stringify(produto));
+
+            navigate("/produto");
+
+        } catch (error) {
+            console.error("Erro ao salvar anúncio:", error);
+            alert("Não foi possível salvar o anúncio. Verifique o tamanho da imagem.");
+        }
     }
+
 
     return (
         <>
@@ -189,11 +217,10 @@ export default function Vender() {
                             <div
                                 key={animacaoKey}
                                 ref={imagemRef}
-                                className={`relative flex min-h-90 items-center justify-center overflow-hidden rounded-2xl border bg-card p-8 sm:min-h-120 ${
-                                    erros.imagem
+                                className={`relative flex min-h-90 items-center justify-center overflow-hidden rounded-2xl border bg-card p-8 sm:min-h-120 ${erros.imagem
                                         ? "border-red-500 animate-shake"
                                         : "border-border"
-                                }`}
+                                    }`}
                             >
                                 {imagem ? (
                                     <img
@@ -257,11 +284,10 @@ export default function Vender() {
                                 <Input
                                     key={animacaoKey}
                                     ref={nomeRef}
-                                    className={`bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white ${
-                                        erros.nome
+                                    className={`bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white ${erros.nome
                                             ? "border-red-500 placeholder:text-red-500 animate-shake"
                                             : ""
-                                    }`}
+                                        }`}
                                     id="nome"
                                     value={nome}
                                     onChange={(e) => {
@@ -295,11 +321,10 @@ export default function Vender() {
                                 <Textarea
                                     key={animacaoKey}
                                     ref={descricaoRef}
-                                    className={`bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white ${
-                                        erros.descricao
+                                    className={`bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white ${erros.descricao
                                             ? "border-red-500 placeholder:text-red-500 animate-shake"
                                             : ""
-                                    }`}
+                                        }`}
                                     id="descricao"
                                     value={descricao}
                                     onChange={(e) => {
@@ -325,11 +350,10 @@ export default function Vender() {
                                         <Input
                                             key={animacaoKey}
                                             ref={precoRef}
-                                            className={`bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white ${
-                                                erros.preco
+                                            className={`bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white ${erros.preco
                                                     ? "border-red-500 placeholder:text-red-500 animate-shake"
                                                     : ""
-                                            }`}
+                                                }`}
                                             id="preco"
                                             type="number"
                                             min="0.01"
