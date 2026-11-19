@@ -1,10 +1,30 @@
+
 import { Button } from "../ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "../ui/input-group";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "../ui/input-group";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useNavigate } from "react-router-dom";
-import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon, MoonIcon, SearchIcon,SunIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import {
+  BadgeCheckIcon,
+  BellIcon,
+  CreditCardIcon,
+  LogOutIcon,
+  MoonIcon,
+  SearchIcon,
+  SunIcon,
+} from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
 import Logo from "./Logo";
 import { MenuLink } from "./MenuLink";
 import { useTheme } from "../contexts/ThemeContext";
@@ -12,17 +32,28 @@ import { CartPopover } from "../ui/CartPopover";
 
 export function Header() {
   const navigate = useNavigate();
-
   const { darkMode, toggleDarkMode } = useTheme();
 
+  const [pesquisa, setPesquisa] = useState("");
+
   const [isLogado, setIsLogado] = useState(() => {
-    const saved = localStorage.getItem('isLogado');
+    const saved = localStorage.getItem("isLogado");
     return saved ? JSON.parse(saved) : null;
   });
 
   useEffect(() => {
-    localStorage.setItem('isLogado', JSON.stringify(isLogado));
+    localStorage.setItem("isLogado", JSON.stringify(isLogado));
   }, [isLogado]);
+
+  function pesquisarProduto(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const termo = pesquisa.trim();
+
+    if (!termo) return;
+
+    navigate(`/pesquisa?q=${encodeURIComponent(termo)}`);
+  }
 
   return (
     <header className="flex justify-center bg-accent backdrop-blur-xs w-full border-b border-border z-100">
@@ -61,19 +92,28 @@ export function Header() {
           <MenuLink path="/ofertas">
             Ofertas
           </MenuLink>
+
           <MenuLink path="/vender">
             Vender
           </MenuLink>
 
         </div>
 
+        {/* Pesquisa */}
         <div className="flex w-full justify-center">
-          <InputGroup>
-            <InputGroupInput placeholder="Buscar..." />
-            <InputGroupAddon>
-              <SearchIcon />
-            </InputGroupAddon>
-          </InputGroup>
+          <form onSubmit={pesquisarProduto} className="w-full">
+            <InputGroup>
+              <InputGroupInput
+                placeholder="Buscar..."
+                value={pesquisa}
+                onChange={(e) => setPesquisa(e.target.value)}
+              />
+
+              <InputGroupAddon>
+                <SearchIcon />
+              </InputGroupAddon>
+            </InputGroup>
+          </form>
         </div>
 
         <div className="flex items-center w-fit justify-end gap-2">
@@ -92,7 +132,12 @@ export function Header() {
 
           {isLogado ?
             <>
-              <Button variant="ghost" size="icon" className="cursor-pointer" aria-label="Notificações">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="cursor-pointer"
+                aria-label="Notificações"
+              >
                 <BellIcon />
               </Button>
 

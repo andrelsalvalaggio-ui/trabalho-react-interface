@@ -20,6 +20,7 @@ import google from "../../assets/google.svg";
 import { useEffect, useState, type FormEvent } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { WavesBG } from "../../components/Wave.tsx";
+import Pesquisa from "../Pesquisa/page.tsx";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/inicio" element={<PaginaInicial />} />
         <Route path="/produto" element={<Produto />} />
         <Route path="/vender" element={<Vender />} />
+        <Route path="/pesquisa" element={<Pesquisa />} />
       </Routes>
     </BrowserRouter>
   );
