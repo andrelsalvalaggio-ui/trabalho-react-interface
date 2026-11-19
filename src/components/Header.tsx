@@ -29,7 +29,7 @@ export function Header() {
       <div className="flex w-305 justify-between items-center gap-x-5 px-8 py-6">
         <div className="flex w-full items-center gap-4">
 
-          <Logo className="cursor-pointer w-25 -mt-4 -mb-5" />
+          <Logo className="cursor-pointer w-[160px] h-auto object-contain shrink-0" />
 
           <DropdownMenu>
             <MenuLink path="/inicio">
