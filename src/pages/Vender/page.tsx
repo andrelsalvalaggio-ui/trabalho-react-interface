@@ -31,7 +31,7 @@ export default function Vender() {
     const [descricao, setDescricao] = useState("");
     const [preco, setPreco] = useState("");
     const [precoAntigo, setPrecoAntigo] = useState("");
-    const [categoria, setCategoria] = useState("");
+    const [categoriasSelecionadas, setCategoriasSelecionadas] = useState<string[]>([]);
     const [estoque, setEstoque] = useState("1");
 
     const [detalhes, setDetalhes] = useState<Detail[]>([
@@ -132,7 +132,8 @@ export default function Vender() {
             image: imagem,
             avaliacao: 0,
             discount: "",
-            categoria,
+            categoria: categoriasSelecionadas[0],
+            categorias: categoriasSelecionadas,
             estoque: Number(estoque),
             createdAt: new Date().toISOString(),
             details: {
@@ -168,7 +169,7 @@ export default function Vender() {
 
             <main className="mx-auto min-h-[85vh] w-full max-w-305 px-6 py-8 sm:py-12">
                 <nav className="mb-8 text-sm text-muted-foreground">
-                    <Link to="/inicio" className="transition-colors hover:text-primary">
+                    <Link to="/" className="transition-colors hover:text-primary">
                         Início
                     </Link>
                     <span className="mx-2">/</span>
@@ -378,7 +379,9 @@ export default function Vender() {
                                                 variant="outline"
                                                 className="h-10 w-full justify-between border-border bg-input text-foreground hover:bg-accent"
                                             >
-                                                {categoria || "Selecione uma categoria"}
+                                                {categoriasSelecionadas.length > 0
+                                                    ? categoriasSelecionadas.join(" • ")
+                                                    : "Selecione categorias"}
                                                 <span className="text-muted-foreground">⌄</span>
                                             </Button>
                                         }
@@ -386,14 +389,23 @@ export default function Vender() {
 
                                     <DropdownMenuContent className="w-[var(--anchor-width)]">
                                         <DropdownMenuGroup className="*:p-3">
-                                            {categorias.map((item) => (
-                                                <DropdownMenuItem
-                                                    key={item}
-                                                    onClick={() => setCategoria(item)}
-                                                >
-                                                    {item}
-                                                </DropdownMenuItem>
-                                            ))}
+                                            {categorias.map((item) => {
+                                                const selecionada = categoriasSelecionadas.includes(item);
+                                                return (
+                                                    <DropdownMenuItem
+                                                        key={item}
+                                                        onClick={() => setCategoriasSelecionadas((atuais) =>
+                                                            atuais.includes(item)
+                                                                ? atuais.filter((categoria) => categoria !== item)
+                                                                : [...atuais, item]
+                                                        )}
+                                                        className="justify-between"
+                                                    >
+                                                        {item}
+                                                        {selecionada && <span aria-hidden="true">✓</span>}
+                                                    </DropdownMenuItem>
+                                                );
+                                            })}
                                         </DropdownMenuGroup>
                                     </DropdownMenuContent>
                                 </DropdownMenu>
@@ -482,7 +494,7 @@ export default function Vender() {
 
                     <div className="mt-8 flex flex-col justify-end gap-3 sm:flex-row">
                         <Button
-                            render={<Link to="/inicio" />}
+                            render={<Link to="/" />}
                             variant="outline"
                             size="lg"
                         >

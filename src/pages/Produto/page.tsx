@@ -60,7 +60,7 @@ export default function Produto() {
 
       <main className="mx-auto min-h-[85vh] w-full max-w-305 px-6 py-8 sm:py-12">
         <nav aria-label="Navegação estrutural" className="mb-8 text-sm text-muted-foreground">
-          <Link to="/inicio" className="transition-colors hover:text-primary">
+          <Link to="/" className="transition-colors hover:text-primary">
             Início
           </Link>
           <span className="mx-2">/</span>

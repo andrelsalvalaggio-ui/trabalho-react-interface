@@ -99,7 +99,7 @@ export function MobileHeader({
             </div>
           </div>
           <form onSubmit={onSearch} className="w-full">
-            <InputGroup>
+            <InputGroup className="h-11 px-1">
               <InputGroupInput
                 placeholder="Buscar produtos..."
                 value={pesquisa}
@@ -141,7 +141,7 @@ export function MobileHeader({
           </div>
 
           <nav className="flex flex-col gap-1">
-            <Button render={<Link to="/inicio" />} variant="ghost" className="justify-start">
+            <Button render={<Link to="/" />} variant="ghost" className="justify-start">
               Início
             </Button>
             <Button render={<Link to="/carrinho" />} variant="ghost" className="justify-start">
@@ -171,7 +171,7 @@ export function MobileHeader({
               </div>
             )}
             <div className="my-3 border-t border-border" />
-            <Button render={<Link to="/inicio#ofertas-do-dia" />} variant="ghost" className="justify-start">
+            <Button render={<Link to="/#ofertas-do-dia" />} variant="ghost" className="justify-start">
               Ofertas
             </Button>
             <Button
@@ -244,7 +244,7 @@ export function MobileHeader({
                   </DropdownMenu>
                 </>
               ) : (
-                <Button render={<Link to="/" />} variant="ghost" className="h-10 w-full justify-start gap-3 px-3">
+                <Button render={<Link to="/login" />} variant="ghost" className="h-10 w-full justify-start gap-3 px-3">
                   Entrar
                 </Button>
               )}

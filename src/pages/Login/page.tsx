@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button.tsx";
 import { Label } from "../../ui/label.tsx";
 import { Input } from "../../ui/input.tsx";
@@ -21,8 +21,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/inicio" element={<PaginaInicial />} />
+        <Route path="/" element={<PaginaInicial />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/inicio" element={<Navigate to="/" replace />} />
         <Route path="/produto" element={<Produto />} />
         <Route path="/vender" element={<Vender />} />
         <Route path="/pesquisa" element={<Pesquisa />} />
@@ -61,7 +62,7 @@ function Login() {
     if (!email || !senha) return;
 
     setIsLogado(true);
-    navigate("/inicio");
+    navigate("/");
   };
 
   return (
@@ -151,14 +152,14 @@ function Login() {
 
                     <div className="grid gap-2">
                       <Label htmlFor="login-password">Senha</Label>
-                      <div className="relative">
+                      <div className="flex items-center gap-2">
                         <Input
                           id="login-password"
                           name="senha"
                           type={mostrarSenha ? "text" : "password"}
                           autoComplete="current-password"
                           placeholder={erroSenha ? "Este campo é obrigatório" : "Digite sua senha"}
-                          className={`pr-10 ${erroSenha
+                          className={`h-11 min-w-0 flex-1 ${erroSenha
                               ? "border-red-500 placeholder:text-red-500 animate-shake"
                               : ""
                             }`}
@@ -168,7 +169,7 @@ function Login() {
                         <button
                           type="button"
                           onClick={() => setMostrarSenha(!mostrarSenha)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                          className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                           aria-label={mostrarSenha ? "Esconder senha" : "Mostrar senha"}
                         >
                           {mostrarSenha ? (

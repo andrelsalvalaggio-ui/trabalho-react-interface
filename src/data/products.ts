@@ -13,14 +13,12 @@ import type { ShopCardProps } from "../components/ShopCard";
 
 export const categorias = [
   "Tecnologia",
+  "Mouses",
+  "Teclados",
   "Acessórios",
-  "Roupas",
-  "Calçados",
-  "Casa e Decoração",
-  "Beleza e Cuidados",
-  "Esportes e Lazer",
+  "Esportes",
   "Eletrodomésticos",
-  "Brinquedos e Jogos",
+  "Jogos",
   "Outros",
 ];
 
@@ -29,6 +27,7 @@ export type ProductSection = "featured" | "recent" | "offers" | "fallback";
 export interface ManagedProduct extends ShopCardProps {
   id: string;
   categoria?: string;
+  categorias?: string[];
   isMock?: boolean;
   estoque?: number;
   createdAt?: string;
@@ -341,6 +340,11 @@ export function initializeProducts(): void {
   if (JSON.stringify(initializedProducts) !== JSON.stringify(products)) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(initializedProducts));
   }
+}
+
+export function getProductCategories(product: ManagedProduct): string[] {
+  if (product.categorias?.length) return product.categorias;
+  return product.categoria ? [product.categoria] : [];
 }
 
 export function getProducts(): ManagedProduct[] {

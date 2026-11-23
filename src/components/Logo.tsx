@@ -3,16 +3,18 @@ import logoDark from "../assets/simpleShopDark.svg";
 import logoWhite from "../assets/simpleShopWhite.svg";
 import { useTheme } from "../contexts/ThemeContext";
 
-export default function Logo({ link = true, setDarkMode = undefined, ...props }: React.ComponentProps<"img"> & { link?: boolean }  & { setDarkMode?: boolean }) {
-    if (setDarkMode === undefined) {
-        const { darkMode } = useTheme();
-        setDarkMode = darkMode;
-    }
+export default function Logo({ link = true, setDarkMode, ...props }: React.ComponentProps<"img"> & { link?: boolean }  & { setDarkMode?: boolean }) {
+    const { darkMode } = useTheme();
+    const logoDarkMode = setDarkMode ?? darkMode;
 
     return (
-        <Link to={link ? "/inicio" : "/"} aria-label="Ir para a página inicial" className="inline-flex">
+        <Link
+            to={link ? "/" : "/login"}
+            aria-label={link ? "Ir para a página inicial" : "Ir para a página de login"}
+            className="inline-flex"
+        >
             <img
-                src={setDarkMode ? logoDark : logoWhite}
+                src={logoDarkMode ? logoDark : logoWhite}
                 alt="Logo SimpleShop"
                 {...props}
             />

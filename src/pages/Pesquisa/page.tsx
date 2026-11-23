@@ -4,7 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Header } from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Card, CardContent } from "../../ui/card";
-import { getProducts, type ManagedProduct } from "../../data/products";
+import { getProducts, getProductCategories, type ManagedProduct } from "../../data/products";
 
 function formatarPreco(preco: string | number): string {
     const valor = Number(String(preco).replace(",", "."));
@@ -27,7 +27,7 @@ export default function Pesquisa() {
             produto.title,
             produto.marca,
             produto.description,
-            produto.categoria,
+            ...getProductCategories(produto),
         ].some((campo) => campo?.toLowerCase().includes(pesquisa));
     }) : [];
 
@@ -92,9 +92,9 @@ export default function Pesquisa() {
                                             R$ {formatarPreco(produto.price)}
                                         </p>
 
-                                        {produto.categoria && (
+                                        {getProductCategories(produto).length > 0 && (
                                             <p className="text-xs text-muted-foreground">
-                                                {produto.categoria}
+                                                {getProductCategories(produto).join(" • ")}
                                             </p>
                                         )}
                                     </CardContent>

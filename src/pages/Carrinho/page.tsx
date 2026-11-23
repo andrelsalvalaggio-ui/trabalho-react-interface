@@ -33,7 +33,7 @@ export default function Carrinho() {
             <p className="mt-2 text-sm text-muted-foreground">
               Adicione produtos para vê-los aqui.
             </p>
-            <Link to="/inicio" className={buttonVariants({ className: "mt-5" })}>
+            <Link to="/" className={buttonVariants({ className: "mt-5" })}>
               Continuar comprando
             </Link>
           </div>
@@ -78,7 +78,7 @@ export default function Carrinho() {
                 <Button className="mt-5 w-full" disabled>
                   Finalizar compra
                 </Button>
-                <Link to="/inicio" className={buttonVariants({ variant: "outline", className: "mt-2 w-full" })}>
+                <Link to="/" className={buttonVariants({ variant: "outline", className: "mt-2 w-full" })}>
                   Continuar comprando
                 </Link>
               </CardContent>

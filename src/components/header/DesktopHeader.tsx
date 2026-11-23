@@ -45,7 +45,7 @@ export function DesktopHeader({
         <div className="flex shrink-0 items-center gap-4">
           <Logo className="w-[160px] shrink-0 cursor-pointer object-contain" />
           <nav className="flex items-center gap-2">
-            <MenuLink path="/inicio">Início</MenuLink>
+            <MenuLink path="/">Início</MenuLink>
             <DropdownMenu>
               <DropdownMenuTrigger render={<SubMenu>Categorias</SubMenu>} />
               <DropdownMenuContent className="w-80">
@@ -62,7 +62,7 @@ export function DesktopHeader({
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
-            <MenuLink path="/inicio#ofertas-do-dia">Ofertas</MenuLink>
+            <MenuLink path="/#ofertas-do-dia">Ofertas</MenuLink>
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center" render={<SubMenu>Categorias</SubMenu>} />
               <DropdownMenuContent align="start" className="w-80">
@@ -134,7 +134,7 @@ export function DesktopHeader({
               </DropdownMenu>
             </>
           ) : (
-            <Button render={<Link to="/" />} variant="outline">Entrar</Button>
+            <Button render={<Link to="/login" />} variant="outline">Entrar</Button>
           )}
         </div>
       </div>

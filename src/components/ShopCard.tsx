@@ -14,6 +14,7 @@ export interface ShopCardProps {
   price: string;
   image: string;
   categoria?: string;
+  categorias?: string[];
   isMock?: boolean;
   avaliacao?: number;
   className?: string;
@@ -39,6 +40,7 @@ export function ShopCard({
   image,
   id,
   categoria,
+  categorias,
   isMock,
   avaliacao,
   className = "",
@@ -46,6 +48,12 @@ export function ShopCard({
   discount,
   details,
 } : ShopCardProps) {
+  const categoriasDoProduto = categorias?.length
+    ? categorias
+    : categoria
+      ? [categoria]
+      : [];
+
   function handleClick() {
     const product = {
       id,
@@ -55,6 +63,7 @@ export function ShopCard({
       price,
       image,
       categoria,
+      categorias,
       isMock,
       avaliacao,
       oldPrice,
@@ -112,6 +121,11 @@ export function ShopCard({
         <img
           src={image}
           alt={title}
+          width="224"
+          height="224"
+          loading={id === "recent-fone-bluetooth" ? "eager" : "lazy"}
+          fetchPriority={id === "recent-fone-bluetooth" ? "high" : "auto"}
+          decoding="async"
           className="mx-auto h-36 w-full max-w-36 object-contain sm:h-56 sm:w-56 sm:max-w-none"
         />
       </CardContent>
@@ -126,6 +140,11 @@ export function ShopCard({
         <p className="font-semibold text-card-foreground text-lg">
           R$ {price}
         </p>
+        {categoriasDoProduto.length > 0 && (
+          <p className="text-xs text-muted-foreground">
+            {categoriasDoProduto.join(" • ")}
+          </p>
+        )}
       </CardFooter>
     </Card>
     </Link>

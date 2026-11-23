@@ -20,8 +20,8 @@ export default function Footer() {
 
                     <nav aria-label="Mapa do site">
                         <h2 className="mb-4 text-sm font-semibold text-foreground">Navegue</h2>
-                        <ul className="space-y-3 text-sm">
-                            <li><Link className="text-muted-foreground transition-colors hover:text-primary" to="/inicio">Início</Link></li>
+                        <ul className="space-y-3 text-base sm:text-sm">
+                            <li><Link className="text-muted-foreground transition-colors hover:text-primary" to="/">Início</Link></li>
                             <li><Link className="text-muted-foreground transition-colors hover:text-primary" to="/pesquisa">Produtos</Link></li>
                             <li><Link className="text-muted-foreground transition-colors hover:text-primary" to="/carrinho">Meu carrinho</Link></li>
                             <li><Link className="text-muted-foreground transition-colors hover:text-primary" to="/meus-anuncios">Meus anúncios</Link></li>
@@ -31,7 +31,7 @@ export default function Footer() {
 
                     <nav aria-label="Categorias">
                         <h2 className="mb-4 text-sm font-semibold text-foreground">Categorias</h2>
-                        <ul className="grid gap-3 text-sm md:grid-cols-1">
+                        <ul className="grid gap-3 text-base sm:text-sm md:grid-cols-1">
                             {categorias.map((categoria) => (
                                 <li key={categoria}>
                                     <Link
@@ -47,8 +47,8 @@ export default function Footer() {
 
                     <div>
                         <h2 className="mb-4 text-sm font-semibold text-foreground">Conta e ajuda</h2>
-                        <ul className="space-y-3 text-sm">
-                            <li><Link className="text-muted-foreground transition-colors hover:text-primary" to="/">Entrar ou cadastrar</Link></li>
+                        <ul className="space-y-3 text-base sm:text-sm">
+                            <li><Link className="text-muted-foreground transition-colors hover:text-primary" to="/login">Entrar ou cadastrar</Link></li>
                             <li><Link className="text-muted-foreground transition-colors hover:text-primary" to="/meus-anuncios">Gerenciar anúncios</Link></li>
                             <li><Link className="text-muted-foreground transition-colors hover:text-primary" to="/carrinho">Acompanhar compra</Link></li>
                             <li><a className="text-muted-foreground transition-colors hover:text-primary" href="mailto:contato@simpleshop.com">Central de contato</a></li>
