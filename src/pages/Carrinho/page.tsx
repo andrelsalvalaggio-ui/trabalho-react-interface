@@ -56,6 +56,7 @@ export default function Carrinho() {
                       <Button
                         variant="ghost"
                         size="icon"
+                        className="cursor-pointer"
                         aria-label={`Remover ${item.title} do carrinho`}
                         onClick={() => removeCart(item.id)}
                       >

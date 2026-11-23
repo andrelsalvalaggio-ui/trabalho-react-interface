@@ -27,19 +27,7 @@ import { CartPopover } from "../CartPopover";
 import Logo from "../Logo";
 import { MenuLink } from "../MenuLink";
 import type { HeaderProps } from "./types";
-
-const categorias = [
-  "Tecnologia",
-  "Acessórios",
-  "Roupas",
-  "Calçados",
-  "Casa e Decoração",
-  "Beleza e Cuidados",
-  "Esportes e Lazer",
-  "Eletrodomésticos",
-  "Brinquedos e Jogos",
-  "Outros",
-];
+import { categorias } from "../../data/products";
 
 export function DesktopHeader({
   isLogado,
@@ -65,6 +53,7 @@ export function DesktopHeader({
                   {categorias.map((categoria) => (
                     <DropdownMenuItem
                       key={categoria}
+                      className="cursor-pointer"
                       onClick={() => onNavigate(`/pesquisa?q=${encodeURIComponent(categoria)}`)}
                     >
                       {categoria}
@@ -76,12 +65,12 @@ export function DesktopHeader({
             <MenuLink path="/inicio#ofertas-do-dia">Ofertas</MenuLink>
             <DropdownMenu>
               <DropdownMenuTrigger render={<MenuLink>Vender</MenuLink>} />
-              <DropdownMenuContent align="start" className="w-48">
-                <DropdownMenuGroup>
-                  <DropdownMenuItem onClick={() => onNavigate("/vender")}>
+              <DropdownMenuContent align="start" className="w-80">
+                <DropdownMenuGroup className="*:p-3">
+                  <DropdownMenuItem className="cursor-pointer" onClick={() => onNavigate("/vender")}>
                     Anunciar produto
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => onNavigate("/meus-anuncios")}>
+                  <DropdownMenuItem className="cursor-pointer" onClick={() => onNavigate("/meus-anuncios")}>
                     Meus anúncios
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
@@ -132,11 +121,11 @@ export function DesktopHeader({
                   }
                 />
                 <DropdownMenuContent align="end" className="min-w-50">
-                  <DropdownMenuGroup className="*:cursor-pointer">
+                  <DropdownMenuGroup className="*:cursor-pointer *:p-2">
                     <DropdownMenuItem><StarIcon />Favoritos</DropdownMenuItem>
                     <DropdownMenuItem><BadgeCheckIcon />Conta</DropdownMenuItem>
                     <DropdownMenuItem><CreditCardIcon />Dados Financeiros</DropdownMenuItem>
-                    <DropdownMenuSeparator />
+                    <DropdownMenuSeparator className="p-0!" />
                     <DropdownMenuItem onClick={() => setIsLogado(false)}>
                       <LogOutIcon />Sair
                     </DropdownMenuItem>

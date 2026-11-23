@@ -32,19 +32,7 @@ import {
 import Logo from "../Logo";
 import type { HeaderProps } from "./types";
 import { useCart } from "../../contexts/CartContext";
-
-const categorias = [
-  "Tecnologia",
-  "Acessórios",
-  "Roupas",
-  "Calçados",
-  "Casa e Decoração",
-  "Beleza e Cuidados",
-  "Esportes e Lazer",
-  "Eletrodomésticos",
-  "Brinquedos e Jogos",
-  "Outros",
-];
+import { categorias } from "../../data/products";
 
 export function MobileHeader({
   isLogado,

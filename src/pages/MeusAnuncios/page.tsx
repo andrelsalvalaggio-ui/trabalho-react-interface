@@ -4,31 +4,15 @@ import { Header } from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Card, CardContent } from "../../ui/card";
 import { Button } from "../../ui/button";
-
-interface Anuncio {
-  id?: string;
-  title: string;
-  marca?: string;
-  description?: string;
-  price: string | number;
-  image: string;
-}
-
-function carregarAnuncios(): Anuncio[] {
-  try {
-    const saved = JSON.parse(localStorage.getItem("anuncios") || "[]");
-    return Array.isArray(saved) ? saved : [];
-  } catch (error) {
-    console.error("Não foi possível carregar os anúncios salvos.", error);
-    return [];
-  }
-}
+import { getProducts, type ManagedProduct } from "../../data/products";
 
 export default function MeusAnuncios() {
   const navigate = useNavigate();
-  const [anuncios] = useState<Anuncio[]>(carregarAnuncios);
+  const [anuncios] = useState<ManagedProduct[]>(() =>
+    getProducts().filter((produto) => !produto.isMock),
+  );
 
-  function abrirAnuncio(anuncio: Anuncio) {
+  function abrirAnuncio(anuncio: ManagedProduct) {
     localStorage.setItem("selectedProduct", JSON.stringify(anuncio));
     localStorage.setItem("meuAnuncio", JSON.stringify(anuncio));
     navigate("/produto");

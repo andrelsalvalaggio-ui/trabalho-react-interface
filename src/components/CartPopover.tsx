@@ -3,10 +3,12 @@ import { useCart } from "../contexts/CartContext";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { useTheme } from "../contexts/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 export function CartPopover() {
   const { cart, removeCart } = useCart();
   const { darkMode } = useTheme();
+  const navigate = useNavigate();
 
   return (
     <Popover>
@@ -29,7 +31,7 @@ export function CartPopover() {
       </PopoverTrigger>
 
       <PopoverContent align="end" className="w-80 border">
-        <h2 className="mb-3 text-sm font-semibold">Meu Carrinho</h2>
+        <h2 className="mb-3 text-lg font-semibold">Meu Carrinho</h2>
 
         {cart.length === 0 ? (
           <div className="flex flex-col items-center gap-2 py-6 text-center text-sm text-muted-foreground">
@@ -67,6 +69,7 @@ export function CartPopover() {
                 ? "hover:bg-on-primary-container"
                 : ""}
           `}
+          onClick={() => navigate("/carrinho")}
         >
           <ShoppingCartIcon aria-hidden="true" />
           Continuar com a compra

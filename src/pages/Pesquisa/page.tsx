@@ -4,17 +4,13 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { Header } from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Card, CardContent } from "../../ui/card";
+import { getProducts, type ManagedProduct } from "../../data/products";
 
-interface Produto {
-    id: string;
-    title: string;
-    marca?: string;
-    description?: string;
-    price: string | number;
-    oldPrice?: string | number;
-    image: string;
-    categoria?: string;
-    estoque?: number;
+function formatarPreco(preco: string | number): string {
+    const valor = Number(String(preco).replace(",", "."));
+    return Number.isFinite(valor)
+        ? valor.toFixed(2).replace(".", ",")
+        : String(preco);
 }
 
 export default function Pesquisa() {
@@ -23,13 +19,7 @@ export default function Pesquisa() {
 
     const termo = searchParams.get("q") || "";
 
-    const produtos: Produto[] = useMemo(() => {
-        try {
-            return JSON.parse(localStorage.getItem("anuncios") || "[]");
-        } catch {
-            return [];
-        }
-    }, []);
+    const produtos = useMemo(() => getProducts(), []);
 
     const resultados = produtos.filter((produto) => {
         const pesquisa = termo.trim().toLowerCase();
@@ -44,7 +34,7 @@ export default function Pesquisa() {
         ].some((campo) => campo?.toLowerCase().includes(pesquisa));
     });
 
-    function abrirProduto(produto: Produto) {
+    function abrirProduto(produto: ManagedProduct) {
         localStorage.setItem("selectedProduct", JSON.stringify(produto));
         localStorage.setItem("meuAnuncio", JSON.stringify(produto));
         navigate("/produto");
@@ -101,7 +91,7 @@ export default function Pesquisa() {
                                     )}
 
                                     <p className="text-xl font-bold text-primary">
-                                        R$ {Number(produto.price).toFixed(2)}
+                                        R$ {formatarPreco(produto.price)}
                                     </p>
 
                                     {produto.categoria && (

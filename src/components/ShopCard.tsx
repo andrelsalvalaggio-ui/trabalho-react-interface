@@ -7,11 +7,14 @@ import {
 } from "../ui/card";
 
 export interface ShopCardProps {
+  id?: string;
   marca?: string;
   title: string;
   description: string;
   price: string;
   image: string;
+  categoria?: string;
+  isMock?: boolean;
   avaliacao?: number;
   className?: string;
   oldPrice?: string;
@@ -34,6 +37,9 @@ export function ShopCard({
   description,
   price,
   image,
+  id,
+  categoria,
+  isMock,
   avaliacao,
   className = "",
   oldPrice,
@@ -44,11 +50,14 @@ export function ShopCard({
 
   function handleClick() {
     const product = {
+      id,
       marca,
       title,
       description,
       price,
       image,
+      categoria,
+      isMock,
       avaliacao,
       oldPrice,
       discount,

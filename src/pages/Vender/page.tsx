@@ -10,6 +10,7 @@ import { Label } from "../../ui/label";
 import { Textarea } from "../../ui/textarea";
 import { useNavigate } from "react-router-dom";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../../ui/dropdown-menu";
+import { addProduct, categorias } from "../../data/products";
 
 interface Detail {
     titulo: string;
@@ -121,6 +122,11 @@ export default function Vender() {
             return;
         }
 
+        if (!imagem) {
+            setErros((atual) => ({ ...atual, imagem: true }));
+            return;
+        }
+
         // Cria o produto
         const produto = {
             id: crypto.randomUUID(),
@@ -149,15 +155,7 @@ export default function Vender() {
 
         try {
             // Recupera os anúncios já cadastrados
-            const anunciosSalvos = JSON.parse(
-                localStorage.getItem("anuncios") || "[]"
-            );
-
-            // Adiciona o novo produto sem apagar os anteriores
-            const novosAnuncios = [...anunciosSalvos, produto];
-
-            // Salva a lista atualizada
-            localStorage.setItem("anuncios", JSON.stringify(novosAnuncios));
+            addProduct(produto);
 
             // Mantém compatibilidade com a página atual do produto
             localStorage.setItem("selectedProduct", JSON.stringify(produto));
@@ -400,18 +398,7 @@ export default function Vender() {
 
                                     <DropdownMenuContent className="w-[var(--anchor-width)]">
                                         <DropdownMenuGroup className="*:p-3">
-                                            {[
-                                                "Tecnologia",
-                                                "Acessórios",
-                                                "Roupas",
-                                                "Calçados",
-                                                "Casa e Decoração",
-                                                "Beleza e Cuidados",
-                                                "Esportes e Lazer",
-                                                "Eletrodomésticos",
-                                                "Brinquedos e Jogos",
-                                                "Outros",
-                                            ].map((item) => (
+                                            {categorias.map((item) => (
                                                 <DropdownMenuItem
                                                     key={item}
                                                     onClick={() => setCategoria(item)}

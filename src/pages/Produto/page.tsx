@@ -10,26 +10,21 @@ import { ProductDetail } from "./components/ProductDetails";
 import { useCart } from "../../contexts/CartContext";
 import { useTheme } from "../../contexts/ThemeContext";
 import type { ShopCardProps } from "../../components/ShopCard";
+import { getMockProduct } from "../../data/products";
 
-
-const defaultProduct: ShopCardProps = {
-  marca: "HyperX",
-  title: "Headset Gamer Pulse X",
-  description:
-    "Imersão e conforto para acompanhar cada partida. Som potente, microfone ajustável e conexão simples para o seu setup.",
-  price: "119,90",
-  image: headset,
-  avaliacao: 4.8,
-  oldPrice: "159,90",
-  discount: "25% OFF",
-};
+function getDefaultProduct(): ShopCardProps {
+  const product = getMockProduct("fallback-headset-pulse-x");
+  if (!product) throw new Error("Produto padrão não encontrado no catálogo.");
+  return product;
+}
 
 function loadProduct(): ShopCardProps {
   try {
     const saved = localStorage.getItem("selectedProduct");
-    return saved ? JSON.parse(saved) : defaultProduct;
-  } catch {
-    return defaultProduct;
+    return saved ? JSON.parse(saved) : getDefaultProduct();
+  } catch (error) {
+    console.error("Não foi possível carregar o produto selecionado.", error);
+    return getDefaultProduct();
   }
 }
 
