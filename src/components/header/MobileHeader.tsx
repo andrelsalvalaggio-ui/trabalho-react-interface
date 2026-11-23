@@ -31,6 +31,7 @@ import {
 } from "../../ui/input-group";
 import Logo from "../Logo";
 import type { HeaderProps } from "./types";
+import { Link } from "react-router-dom";
 import { useCart } from "../../contexts/CartContext";
 import { categorias } from "../../data/products";
 
@@ -40,7 +41,6 @@ export function MobileHeader({
   pesquisa,
   setPesquisa,
   onSearch,
-  onNavigate,
   darkMode,
   toggleDarkMode,
 }: HeaderProps) {
@@ -64,11 +64,6 @@ export function MobileHeader({
     };
   }, [menuAberto]);
 
-  function navegarPara(path: string) {
-    setMenuAberto(false);
-    onNavigate(path);
-  }
-
   return (
     <>
       <header className="flex w-full justify-center border-b border-border bg-accent backdrop-blur-xs lg:hidden">
@@ -77,11 +72,11 @@ export function MobileHeader({
             <Logo className="w-[110px] shrink-0 cursor-pointer object-contain sm:w-[160px]" />
             <div className="flex items-center gap-1">
               <Button
+                render={<Link to="/carrinho" />}
                 variant="ghost"
                 size="icon"
                 className="relative cursor-pointer"
                 aria-label={`Abrir carrinho (${cart.length} itens)`}
-                onClick={() => navegarPara("/carrinho")}
               >
                 <ShoppingCartIcon className="size-5" />
                 {cart.length > 0 && (
@@ -139,7 +134,6 @@ export function MobileHeader({
           <div className="mb-5 flex items-center justify-between border-b border-border pb-4">
             <Logo
               className="w-[140px] shrink-0 cursor-pointer object-contain"
-              onClick={() => navegarPara("/inicio")}
             />
             <Button variant="ghost" size="icon" aria-label="Fechar menu" onClick={() => setMenuAberto(false)}>
               <XIcon className="size-5" />
@@ -147,10 +141,10 @@ export function MobileHeader({
           </div>
 
           <nav className="flex flex-col gap-1">
-            <Button variant="ghost" className="justify-start" onClick={() => navegarPara("/inicio")}>
+            <Button render={<Link to="/inicio" />} variant="ghost" className="justify-start">
               Início
             </Button>
-            <Button variant="ghost" className="justify-start" onClick={() => navegarPara("/carrinho")}>
+            <Button render={<Link to="/carrinho" />} variant="ghost" className="justify-start">
               Carrinho
             </Button>
             <Button
@@ -167,9 +161,9 @@ export function MobileHeader({
                 {categorias.map((categoria) => (
                   <Button
                     key={categoria}
+                    render={<Link to={`/pesquisa?q=${encodeURIComponent(categoria)}`} />}
                     variant="ghost"
                     className="justify-start text-muted-foreground"
-                    onClick={() => navegarPara(`/pesquisa?q=${encodeURIComponent(categoria)}`)}
                   >
                     {categoria}
                   </Button>
@@ -177,7 +171,7 @@ export function MobileHeader({
               </div>
             )}
             <div className="my-3 border-t border-border" />
-            <Button variant="ghost" className="justify-start" onClick={() => navegarPara("/inicio#ofertas-do-dia")}>
+            <Button render={<Link to="/inicio#ofertas-do-dia" />} variant="ghost" className="justify-start">
               Ofertas
             </Button>
             <Button
@@ -191,10 +185,10 @@ export function MobileHeader({
             </Button>
             {venderAberto && (
               <div className="ml-4 flex flex-col gap-1 border-l border-border pl-2">
-                <Button variant="ghost" className="justify-start text-muted-foreground" onClick={() => navegarPara("/vender")}>
+                <Button render={<Link to="/vender" />} variant="ghost" className="justify-start text-muted-foreground">
                   Anunciar produto
                 </Button>
-                <Button variant="ghost" className="justify-start text-muted-foreground" onClick={() => navegarPara("/meus-anuncios")}>
+                <Button render={<Link to="/meus-anuncios" />} variant="ghost" className="justify-start text-muted-foreground">
                   Meus anúncios
                 </Button>
               </div>
@@ -250,7 +244,7 @@ export function MobileHeader({
                   </DropdownMenu>
                 </>
               ) : (
-                <Button variant="ghost" className="h-10 w-full justify-start gap-3 px-3" onClick={() => navegarPara("/")}>
+                <Button render={<Link to="/" />} variant="ghost" className="h-10 w-full justify-start gap-3 px-3">
                   Entrar
                 </Button>
               )}

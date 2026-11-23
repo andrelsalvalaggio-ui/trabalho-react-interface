@@ -1,5 +1,5 @@
 
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import {
   Card, CardContent, CardDescription,
@@ -46,8 +46,6 @@ export function ShopCard({
   discount,
   details,
 } : ShopCardProps) {
-  const navigate = useNavigate();
-
   function handleClick() {
     const product = {
       id,
@@ -65,15 +63,19 @@ export function ShopCard({
     };
 
     localStorage.setItem("selectedProduct", JSON.stringify(product));
-    navigate("/produto");
   }
 
   return (
+    <Link
+      to={id ? `/produto?id=${encodeURIComponent(id)}` : "/produto"}
+      onClick={handleClick}
+      className="block h-full rounded-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30"
+      aria-label={`Ver detalhes de ${title}`}
+    >
     <Card
       id="shop-card"
-      onClick={handleClick}
       className={`cursor-pointer bg-card relative w-full h-full
-      transition-all duration-300 hover:shadow-[0_0_24px_-4px_rgb(139,47,201,0.45)] hover:-translate-y-1 ${className}`}
+      transition-all duration-300 hover:shadow-[0_0_14px_-4px_rgb(139,47,201,0.45)] hover:-translate-y-1 ${className}`}
     >
       {discount && (
         <span className="absolute top-3 right-3 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-md">
@@ -126,5 +128,6 @@ export function ShopCard({
         </p>
       </CardFooter>
     </Card>
+    </Link>
   );
 }

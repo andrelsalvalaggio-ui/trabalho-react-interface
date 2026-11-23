@@ -25,9 +25,10 @@ import {
 } from "../../ui/input-group";
 import { CartPopover } from "../CartPopover";
 import Logo from "../Logo";
-import { MenuLink } from "../MenuLink";
+import { MenuLink, SubMenu } from "../MenuLink";
 import type { HeaderProps } from "./types";
 import { categorias } from "../../data/products";
+import { Link } from "react-router-dom";
 
 export function DesktopHeader({
   isLogado,
@@ -35,7 +36,6 @@ export function DesktopHeader({
   pesquisa,
   setPesquisa,
   onSearch,
-  onNavigate,
   darkMode,
   toggleDarkMode,
 }: HeaderProps) {
@@ -47,14 +47,14 @@ export function DesktopHeader({
           <nav className="flex items-center gap-2">
             <MenuLink path="/inicio">Início</MenuLink>
             <DropdownMenu>
-              <DropdownMenuTrigger render={<MenuLink>Categorias</MenuLink>} />
+              <DropdownMenuTrigger render={<SubMenu>Categorias</SubMenu>} />
               <DropdownMenuContent className="w-80">
                 <DropdownMenuGroup className="*:p-3">
                   {categorias.map((categoria) => (
                     <DropdownMenuItem
                       key={categoria}
+                      render={<Link to={`/pesquisa?q=${encodeURIComponent(categoria)}`} />}
                       className="cursor-pointer"
-                      onClick={() => onNavigate(`/pesquisa?q=${encodeURIComponent(categoria)}`)}
                     >
                       {categoria}
                     </DropdownMenuItem>
@@ -64,13 +64,13 @@ export function DesktopHeader({
             </DropdownMenu>
             <MenuLink path="/inicio#ofertas-do-dia">Ofertas</MenuLink>
             <DropdownMenu>
-              <DropdownMenuTrigger render={<MenuLink>Vender</MenuLink>} />
+              <DropdownMenuTrigger className="flex items-center" render={<SubMenu>Categorias</SubMenu>} />
               <DropdownMenuContent align="start" className="w-80">
                 <DropdownMenuGroup className="*:p-3">
-                  <DropdownMenuItem className="cursor-pointer" onClick={() => onNavigate("/vender")}>
+                  <DropdownMenuItem render={<Link to="/vender" />} className="cursor-pointer">
                     Anunciar produto
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer" onClick={() => onNavigate("/meus-anuncios")}>
+                  <DropdownMenuItem render={<Link to="/meus-anuncios" />} className="cursor-pointer">
                     Meus anúncios
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
@@ -134,7 +134,7 @@ export function DesktopHeader({
               </DropdownMenu>
             </>
           ) : (
-            <Button variant="outline" onClick={() => onNavigate("/")}>Entrar</Button>
+            <Button render={<Link to="/" />} variant="outline">Entrar</Button>
           )}
         </div>
       </div>

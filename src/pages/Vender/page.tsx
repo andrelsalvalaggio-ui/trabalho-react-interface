@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { Textarea } from "../../ui/textarea";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../../ui/dropdown-menu";
 import { addProduct, categorias } from "../../data/products";
 
@@ -20,7 +20,6 @@ interface Detail {
 export default function Vender() {
     const navigate = useNavigate();
 
-    // Referências para rolagem automática
     const imagemRef = useRef<HTMLDivElement>(null);
     const nomeRef = useRef<HTMLInputElement>(null);
     const descricaoRef = useRef<HTMLTextAreaElement>(null);
@@ -47,7 +46,6 @@ export default function Vender() {
         imagem: false,
     });
 
-    // Incrementar esta chave reinicia a animação
     const [animacaoKey, setAnimacaoKey] = useState(0);
 
     function handleImagem(event: ChangeEvent<HTMLInputElement>) {
@@ -101,17 +99,14 @@ export default function Vender() {
         setErros(novosErros);
 
         if (Object.values(novosErros).some(Boolean)) {
-            // Reinicia a animação em toda tentativa
             setAnimacaoKey((atual) => atual + 1);
 
-            // Identifica o primeiro campo inválido
             const primeiroCampoInvalido =
                 novosErros.imagem ? imagemRef :
                     novosErros.nome ? nomeRef :
                         novosErros.descricao ? descricaoRef :
                             precoRef;
 
-            // Rola até o campo com erro
             requestAnimationFrame(() => {
                 primeiroCampoInvalido.current?.scrollIntoView({
                     behavior: "smooth",
@@ -127,7 +122,6 @@ export default function Vender() {
             return;
         }
 
-        // Cria o produto
         const produto = {
             id: crypto.randomUUID(),
             title: nome,
@@ -154,14 +148,12 @@ export default function Vender() {
         };
 
         try {
-            // Recupera os anúncios já cadastrados
             addProduct(produto);
 
-            // Mantém compatibilidade com a página atual do produto
             localStorage.setItem("selectedProduct", JSON.stringify(produto));
             localStorage.setItem("meuAnuncio", JSON.stringify(produto));
 
-            navigate("/produto");
+            navigate(`/produto?id=${encodeURIComponent(produto.id)}`);
 
         } catch (error) {
             console.error("Erro ao salvar anúncio:", error);
@@ -176,13 +168,9 @@ export default function Vender() {
 
             <main className="mx-auto min-h-[85vh] w-full max-w-305 px-6 py-8 sm:py-12">
                 <nav className="mb-8 text-sm text-muted-foreground">
-                    <button
-                        type="button"
-                        onClick={() => navigate("/inicio")}
-                        className="transition-colors hover:text-primary"
-                    >
+                    <Link to="/inicio" className="transition-colors hover:text-primary">
                         Início
-                    </button>
+                    </Link>
                     <span className="mx-2">/</span>
                     <span className="text-foreground">Vender</span>
                 </nav>
@@ -243,7 +231,7 @@ export default function Vender() {
 
                             <Label
                                 htmlFor="imagem-produto"
-                                className="flex h-11 cursor-pointer items-center justify-center gap-2 rounded-md border border-gray-300 bg-white text-gray-900 text-sm font-medium transition-colors hover:bg-gray-100"
+                                className="flex h-11 cursor-pointer items-center justify-center gap-2 rounded-md border border-border bg-input text-foreground text-sm font-medium transition-colors hover:bg-accent"
                             >
                                 <ImagePlus className="size-4" />
                                 {imagem ? "Trocar imagem" : "Selecionar imagem"}
@@ -271,7 +259,7 @@ export default function Vender() {
                                 <Input
                                     key={animacaoKey}
                                     ref={nomeRef}
-                                    className={`bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white ${erros.nome
+                                    className={`bg-input text-foreground placeholder:text-muted-foreground ${erros.nome
                                             ? "border-red-500 placeholder:text-red-500 animate-shake"
                                             : ""
                                         }`}
@@ -295,7 +283,7 @@ export default function Vender() {
                             <div className="grid gap-2">
                                 <Label htmlFor="marca">Marca</Label>
                                 <Input
-                                    className="bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white"
+                                    className="bg-input text-foreground placeholder:text-muted-foreground"
                                     id="marca"
                                     value={marca}
                                     onChange={(e) => setMarca(e.target.value)}
@@ -308,7 +296,7 @@ export default function Vender() {
                                 <Textarea
                                     key={animacaoKey}
                                     ref={descricaoRef}
-                                    className={`bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white ${erros.descricao
+                                    className={`bg-input text-foreground placeholder:text-muted-foreground ${erros.descricao
                                             ? "border-red-500 placeholder:text-red-500 animate-shake"
                                             : ""
                                         }`}
@@ -337,7 +325,7 @@ export default function Vender() {
                                         <Input
                                             key={animacaoKey}
                                             ref={precoRef}
-                                            className={`bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white ${erros.preco
+                                            className={`bg-input text-foreground placeholder:text-muted-foreground ${erros.preco
                                                     ? "border-red-500 placeholder:text-red-500 animate-shake"
                                                     : ""
                                                 }`}
@@ -366,7 +354,7 @@ export default function Vender() {
                                             Preço anterior (opcional)
                                         </Label>
                                         <Input
-                                            className="bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white"
+                                            className="bg-input text-foreground placeholder:text-muted-foreground"
                                             id="preco-antigo"
                                             type="number"
                                             min="0"
@@ -388,7 +376,7 @@ export default function Vender() {
                                             <Button
                                                 type="button"
                                                 variant="outline"
-                                                className="h-10 w-full justify-between border-gray-300 bg-white text-gray-900 hover:bg-gray-100"
+                                                className="h-10 w-full justify-between border-border bg-input text-foreground hover:bg-accent"
                                             >
                                                 {categoria || "Selecione uma categoria"}
                                                 <span className="text-muted-foreground">⌄</span>
@@ -414,7 +402,7 @@ export default function Vender() {
                             <div className="grid gap-2">
                                 <Label htmlFor="estoque">Quantidade em estoque</Label>
                                 <Input
-                                    className="bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white"
+                                    className="bg-input text-foreground placeholder:text-muted-foreground"
                                     id="estoque"
                                     type="number"
                                     min="1"
@@ -445,7 +433,7 @@ export default function Vender() {
                                     <div className="grid gap-2">
                                         <Label>Título</Label>
                                         <Input
-                                            className="bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white"
+                                            className="bg-input text-foreground placeholder:text-muted-foreground"
                                             value={detalhe.titulo}
                                             onChange={(e) =>
                                                 atualizarDetalhe(index, "titulo", e.target.value)
@@ -457,7 +445,7 @@ export default function Vender() {
                                     <div className="grid gap-2">
                                         <Label>Descrição</Label>
                                         <Input
-                                            className="bg-white text-gray-900 placeholder:text-gray-400 dark:bg-white"
+                                            className="bg-input text-foreground placeholder:text-muted-foreground"
                                             value={detalhe.descricao}
                                             onChange={(e) =>
                                                 atualizarDetalhe(index, "descricao", e.target.value)
@@ -494,10 +482,9 @@ export default function Vender() {
 
                     <div className="mt-8 flex flex-col justify-end gap-3 sm:flex-row">
                         <Button
-                            type="button"
+                            render={<Link to="/inicio" />}
                             variant="outline"
                             size="lg"
-                            onClick={() => navigate("/inicio")}
                         >
                             Cancelar
                         </Button>

@@ -3,12 +3,11 @@ import { useCart } from "../contexts/CartContext";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { useTheme } from "../contexts/ThemeContext";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function CartPopover() {
   const { cart, removeCart } = useCart();
   const { darkMode } = useTheme();
-  const navigate = useNavigate();
 
   return (
     <Popover>
@@ -18,7 +17,7 @@ export function CartPopover() {
             variant="ghost"
             size="icon"
             className="relative cursor-pointer pr-1"
-            aria-label={`Favoritos (${cart.length})`}
+            aria-label={`Carrinho (${cart.length} ${cart.length === 1 ? "item" : "itens"})`}
           />
         }
       >
@@ -55,7 +54,7 @@ export function CartPopover() {
                   size="icon"
                   className="cursor-pointer"
                   onClick={() => removeCart(item.id)}
-                  aria-label={`Remover ${item.title} dos favoritos`}
+                  aria-label={`Remover ${item.title} do carrinho`}
                 >
                   <Trash2 className="size-4" aria-hidden="true" />
                 </Button>
@@ -63,17 +62,16 @@ export function CartPopover() {
             ))}
           </ul>
         )}
-        <Button size="lg" className={`
-            h-11 w-full mt-5 transition-all duration-300 cursor-pointer
-            ${darkMode
-                ? "hover:bg-on-primary-container"
-                : ""}
-          `}
-          onClick={() => navigate("/carrinho")}
-        >
-          <ShoppingCartIcon aria-hidden="true" />
-          Continuar com a compra
-        </Button>
+        {cart.length > 0 && (
+          <Button
+            render={<Link to="/carrinho" />}
+            size="lg"
+            className={`h-11 w-full mt-5 transition-all duration-300 cursor-pointer ${darkMode ? "hover:bg-on-primary-container" : ""}`}
+          >
+            <ShoppingCartIcon aria-hidden="true" />
+            Ir para o carrinho
+          </Button>
+        )}
       </PopoverContent>
     </Popover>
   );

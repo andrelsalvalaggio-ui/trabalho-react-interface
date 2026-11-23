@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Header } from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Card, CardContent } from "../../ui/card";
@@ -7,7 +7,6 @@ import { Button } from "../../ui/button";
 import { getProducts, type ManagedProduct } from "../../data/products";
 
 export default function MeusAnuncios() {
-  const navigate = useNavigate();
   const [anuncios] = useState<ManagedProduct[]>(() =>
     getProducts().filter((produto) => !produto.isMock),
   );
@@ -15,7 +14,6 @@ export default function MeusAnuncios() {
   function abrirAnuncio(anuncio: ManagedProduct) {
     localStorage.setItem("selectedProduct", JSON.stringify(anuncio));
     localStorage.setItem("meuAnuncio", JSON.stringify(anuncio));
-    navigate("/produto");
   }
 
   return (
@@ -29,16 +27,20 @@ export default function MeusAnuncios() {
               Produtos que você publicou nesta loja.
             </p>
           </div>
-          <Button onClick={() => navigate("/vender")}>Anunciar produto</Button>
+          <Button render={<Link to="/vender" />}>Anunciar produto</Button>
         </div>
 
         {anuncios.length > 0 ? (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {anuncios.map((anuncio, index) => (
-              <Card
+              <Link
                 key={anuncio.id || `${anuncio.title}-${index}`}
-                className="cursor-pointer overflow-hidden transition-transform hover:-translate-y-1"
+                to={`/produto?id=${encodeURIComponent(anuncio.id)}`}
                 onClick={() => abrirAnuncio(anuncio)}
+                aria-label={`Ver detalhes de ${anuncio.title}`}
+              >
+              <Card
+                className="cursor-pointer overflow-hidden transition-transform hover:-translate-y-1"
               >
                 <div className="flex h-48 items-center justify-center bg-muted/30 p-4">
                   <img
@@ -58,6 +60,7 @@ export default function MeusAnuncios() {
                   <p className="text-lg font-bold">R$ {anuncio.price}</p>
                 </CardContent>
               </Card>
+              </Link>
             ))}
           </div>
         ) : (
@@ -66,7 +69,7 @@ export default function MeusAnuncios() {
             <p className="mt-2 text-sm text-muted-foreground">
               Seus produtos anunciados aparecerão aqui.
             </p>
-            <Button className="mt-5" onClick={() => navigate("/vender")}>
+            <Button render={<Link to="/vender" />} className="mt-5">
               Anunciar produto
             </Button>
           </div>

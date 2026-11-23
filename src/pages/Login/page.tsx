@@ -15,6 +15,7 @@ import Pesquisa from "../Pesquisa/page.tsx";
 import Carrinho from "../Carrinho/page.tsx";
 import MeusAnuncios from "../MeusAnuncios/page.tsx";
 import Logo from "../../components/Logo.tsx";
+import Footer from "../../components/Footer.tsx";
 
 function App() {
   return (
@@ -90,7 +91,7 @@ function Login() {
 
             <div className="relative">
               <div className="w-60 mb-10">
-                <Logo link={false} />
+                <Logo setDarkMode={true} link={false} />
               </div>
               <h1 className="max-w-lg text-4xl leading-tight font-bold xl:text-5xl">
                 Tudo para deixar sua rotina mais simples.
@@ -179,7 +180,7 @@ function Login() {
                       </div>
                       <a
                         href="#"
-                        className="ml-auto text-sm text-primary underline-offset-4 hover:underline"
+                        className="text-sm text-primary underline-offset-4 hover:underline"
                       >
                         Dificuldade no acesso?
                       </a>
@@ -220,6 +221,7 @@ function Login() {
           </section>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

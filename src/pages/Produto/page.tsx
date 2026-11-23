@@ -10,7 +10,7 @@ import { ProductDetail } from "./components/ProductDetails";
 import { useCart } from "../../contexts/CartContext";
 import { useTheme } from "../../contexts/ThemeContext";
 import type { ShopCardProps } from "../../components/ShopCard";
-import { getMockProduct } from "../../data/products";
+import { getMockProduct, getProducts } from "../../data/products";
 
 function getDefaultProduct(): ShopCardProps {
   const product = getMockProduct("fallback-headset-pulse-x");
@@ -18,8 +18,16 @@ function getDefaultProduct(): ShopCardProps {
   return product;
 }
 
-function loadProduct(): ShopCardProps {
+function loadProduct(productId: string | null): ShopCardProps {
   try {
+    if (productId) {
+      const product = getProducts().find((item) => item.id === productId);
+      if (product) return product;
+
+      console.error(`O produto "${productId}" não foi encontrado.`);
+      return getDefaultProduct();
+    }
+
     const saved = localStorage.getItem("selectedProduct");
     return saved ? JSON.parse(saved) : getDefaultProduct();
   } catch (error) {
@@ -29,8 +37,9 @@ function loadProduct(): ShopCardProps {
 }
 
 export default function Produto() {
+  const selectedProductId = new URLSearchParams(window.location.search).get("id");
   const { isCart, toggleCart } = useCart();
-  const [product] = useState<ShopCardProps>(loadProduct);
+  const [product] = useState<ShopCardProps>(() => loadProduct(selectedProductId));
   const { darkMode } = useTheme();
 
   const productId = product.title;

@@ -1,6 +1,6 @@
 
 import { useMemo } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Header } from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Card, CardContent } from "../../ui/card";
@@ -14,30 +14,26 @@ function formatarPreco(preco: string | number): string {
 }
 
 export default function Pesquisa() {
-    const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
     const termo = searchParams.get("q") || "";
 
     const produtos = useMemo(() => getProducts(), []);
 
-    const resultados = produtos.filter((produto) => {
-        const pesquisa = termo.trim().toLowerCase();
+    const pesquisa = termo.trim().toLowerCase();
 
-        if (!pesquisa) return false;
-
+    const resultados = pesquisa ? produtos.filter((produto) => {
         return [
             produto.title,
             produto.marca,
             produto.description,
             produto.categoria,
         ].some((campo) => campo?.toLowerCase().includes(pesquisa));
-    });
+    }) : [];
 
     function abrirProduto(produto: ManagedProduct) {
         localStorage.setItem("selectedProduct", JSON.stringify(produto));
         localStorage.setItem("meuAnuncio", JSON.stringify(produto));
-        navigate("/produto");
     }
 
     return (
@@ -66,41 +62,44 @@ export default function Pesquisa() {
                 {resultados.length > 0 ? (
                     <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {resultados.map((produto) => (
-                            <Card
+                            <Link
                                 key={produto.id}
-                                className="cursor-pointer overflow-hidden transition-transform hover:-translate-y-1"
+                                to={`/produto?id=${encodeURIComponent(produto.id)}`}
                                 onClick={() => abrirProduto(produto)}
+                                className="block rounded-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30"
                             >
-                                <div className="flex h-56 items-center justify-center bg-muted/30 p-4">
-                                    <img
-                                        src={produto.image}
-                                        alt={produto.title}
-                                        className="h-full w-full object-contain"
-                                    />
-                                </div>
+                                <Card className="h-full cursor-pointer overflow-hidden transition-transform hover:-translate-y-1">
+                                    <div className="flex h-56 items-center justify-center bg-muted/30 p-4">
+                                        <img
+                                            src={produto.image}
+                                            alt={produto.title}
+                                            className="h-full w-full object-contain"
+                                        />
+                                    </div>
 
-                                <CardContent className="flex flex-col gap-2 p-4">
-                                    <h2 className="line-clamp-2 font-medium">
-                                        {produto.title}
-                                    </h2>
+                                    <CardContent className="flex flex-col gap-2 p-4">
+                                        <h2 className="line-clamp-2 font-medium">
+                                            {produto.title}
+                                        </h2>
 
-                                    {produto.marca && (
-                                        <p className="text-sm text-muted-foreground">
-                                            {produto.marca}
+                                        {produto.marca && (
+                                            <p className="text-sm text-muted-foreground">
+                                                {produto.marca}
+                                            </p>
+                                        )}
+
+                                        <p className="text-xl font-bold text-primary">
+                                            R$ {formatarPreco(produto.price)}
                                         </p>
-                                    )}
 
-                                    <p className="text-xl font-bold text-primary">
-                                        R$ {formatarPreco(produto.price)}
-                                    </p>
-
-                                    {produto.categoria && (
-                                        <p className="text-xs text-muted-foreground">
-                                            {produto.categoria}
-                                        </p>
-                                    )}
-                                </CardContent>
-                            </Card>
+                                        {produto.categoria && (
+                                            <p className="text-xs text-muted-foreground">
+                                                {produto.categoria}
+                                            </p>
+                                        )}
+                                    </CardContent>
+                                </Card>
+                            </Link>
                         ))}
                     </div>
                 ) : (
